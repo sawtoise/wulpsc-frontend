@@ -1,0 +1,21 @@
+.main-page{
+    padding-top: 2vh;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: center;
+    row-gap: 3vh;
+    column-gap: 5vh;
+
+
+    background-color: #E8E8E8;
+}
+
+.right-container {
+    display: flex;
+}
+
+.left-container {
+    display: flex;
+}

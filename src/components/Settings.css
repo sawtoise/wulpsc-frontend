@@ -1,0 +1,34 @@
+.outerSettingsContainer {
+    justify-content: center;
+    margin-bottom: 3vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.checkboxIcon {
+    width: 4vh;
+}
+
+.applyButton {
+    cursor: pointer;
+    margin-top: 2vh;
+    background-color: #4B9460; /* Green */
+    border-radius: 1vh;
+    border-style: hidden;
+    color: white;
+    width: 25vh;
+    padding: 0.8vh 2vh;
+    text-align: center;
+    text-decoration: none;
+
+
+    font-size: 3.5vh;
+    font-family: Inter;
+    font-weight: 400;
+}
+
+.buttonColumn {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}

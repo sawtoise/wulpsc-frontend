@@ -1,0 +1,135 @@
+.image-container {
+    background-color:#D9D9D9;
+    width: 3vh
+}
+
+.battery {
+    background-color: #4B9460;
+}
+
+.batteryContainer {
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.batteryText {
+    font-family: Inter;
+    color: #4B9460;
+    font-size: 2vh;
+    font-weight: bold;
+}
+
+.batteryShape {
+    display: flex;
+}
+
+.batteryTip {
+    height: 2vh;
+    align-self: center;
+    border-radius: 0.3vh;
+    width: 0.9vh;
+    background-color: #D9D9D9;
+}
+
+
+.batteryBackground {
+    height: 2vh;
+    padding: 0.6vh;
+    border-radius: 0.5vh;
+    display: flex;
+    width: 5vh;
+    background-color: #D9D9D9;
+}
+
+
+.image {
+    width: 40vh
+}
+
+.outerContainer {
+}
+
+.photoHeader {
+    margin-bottom: 1vh;
+    border-color: red;
+    display: flex;
+    flex-direction: row;
+}
+
+.activeText {
+    font-size: 2.5vh;
+    font-weight: bold;
+    font-family: Inter;
+    color: #4B9460;
+}
+
+.captureButton {
+    cursor:pointer;
+    margin-top: 2vh;
+    background-color: #4B9460; /* Green */
+    border-radius: 1vh;
+    border-style: hidden;
+    color: white;
+    width: 25vh;
+    padding: 0.8vh 2vh;
+    text-align: center;
+    text-decoration: none;
+
+    display: inline-block;
+    font-size: 3.5vh;
+    font-family: Inter;
+    font-weight: 400;
+}
+
+.captureButton:hover {
+    background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
+}
+
+.captureButton:active {
+    background-image: linear-gradient(rgb(0 0 0/20%) 0 0);
+}
+
+.cameraButtonRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.dateText {
+    float: right;
+    font-size: 2.5vh;
+    font-weight: 700;
+    font-family: 'Inter';
+    color: #666666;
+}
+
+.infoIcon{
+    padding-left: 0.3vh;
+    padding-right: 0.3vh;
+    margin-top: 3vh;
+    cursor:pointer;
+    width: 3.4vh;
+}
+
+.infoIcon:hover {
+    border-radius: 3vh;
+    background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
+}
+
+.cameraIcon {
+    width: 3.8vh;
+}
+
+.image {
+    border-radius: 1vh;
+}
+
+.photoTitle {
+    margin-top: 3vh;
+    flex: 3;
+    font-size: 3vh;
+    font-weight: bold;
+    font-family: Inter;
+    color: #666666;
+}
