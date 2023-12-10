@@ -1,0 +1,52 @@
+.timeListContainer {
+    margin-top: 3vh;
+    background-color: #dcdcdc;
+    align-self: center;
+    align-items: center;
+    border-style: solid;
+    border-width: 0.3vh;
+    border-radius: 1vh;
+    border-color: #BDBDBD;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.timeItems {
+
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    padding-right: 3.5vh;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    font-size: 2.5vh;
+    font-family: Inter;
+    font-weight: 600;
+}
+
+.timeListContainer:empty {
+    display: none;
+}
+
+.timeItems:empty {
+    display: none;
+}
+
+.timeItem:hover {
+    border-radius: 2vh;
+    width: 10vh;
+    background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
+}
+
+.pushButton:active {
+    border-radius: 2vh;
+    width: 10vh;
+    background-image: linear-gradient(rgb(0 0 0/20%) 0 0);
+}
+
+
+.timeItem {
+    cursor: pointer;
+    border-color: red;
+}

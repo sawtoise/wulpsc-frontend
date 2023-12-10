@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
-import { TimePicker } from '@mui/x-date-pickers'
+import { useEffect } from 'react'
 import './Settings.css'
 import InputSlider from './Slider.jsx'
-import GalleryIcon from '../images/Gallery.svg'
-import CheckboxIcon from '../images/Checkbox.svg'
-import dayjs from 'dayjs'
+import GalleryIcon from '../assets/Gallery.svg'
+import CheckboxIcon from '../assets/Checkbox.svg'
+import TimePickerContainer from './TimePickerContainer.jsx'
+import TimeList from './TimeList.jsx'
 
 const Settings = ({
                       saturation,
@@ -17,7 +17,6 @@ const Settings = ({
                       setTimeValues,
                   }) => {
 
-    const [timeValue, setTimeValue] = useState(dayjs('2022-04-17T15:30'))
 
     useEffect(() => {
     }, [timeValues])
@@ -42,33 +41,10 @@ const Settings = ({
                          value={contrast}
                          setValue={setContrast}
             />
-            <TimePicker
-                defaultValue={dayjs('2022-04-17T15:30')}
-                value={timeValue}
-                onChange={(newValue) => setTimeValue(newValue)}>
-            </TimePicker>
-            <button type="button"
-                    onClick={() => {
 
-                        const trimmedTime = timeValue.hour() + ':' + timeValue.minute()
-                        /* timeValues.push({
-                              id: timeValues.length + 1,
-                              time: trimmedTime
-                          })*/
-
-                        if (timeValues.find(e => e.time === trimmedTime)) {
-                            window.alert('Already exists')
-                            return
-                        }
-
-                        setTimeValues(prevState => [...prevState, {
-                            id: prevState.length + 1,
-                            time: trimmedTime,
-                        }])
-                        console.log(timeValues)
-                    }}
-            >Push
-            </button>
+            <TimePickerContainer timeValues={timeValues}
+                                 setTimeValues={setTimeValues}
+            />
 
             <TimeList setTimeValues={setTimeValues} timeValues={timeValues}></TimeList>
 
@@ -96,19 +72,6 @@ const Settings = ({
 
             </div>
         </div>
-    )
-}
-
-const TimeList = ({ timeValues, setTimeValues }) => {
-
-    const listItems = timeValues.map((timeValue) =>
-        <li onClick={() => setTimeValues(timeValues.filter(t => t.id !== timeValue.id))}
-            key={timeValue.id}>{timeValue.time}</li>,
-    )
-
-
-    return (
-        <ul>{listItems}</ul>
     )
 }
 

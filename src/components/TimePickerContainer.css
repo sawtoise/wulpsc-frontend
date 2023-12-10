@@ -1,0 +1,36 @@
+.pushButton {
+    align-self: center;
+    cursor: pointer;
+    background-color: #4B9460;
+    border-radius: 2vh;
+    border-style: hidden;
+    width: 5vh;
+    height: 5vh;
+    padding-top: 0.5vh;
+
+    color: white;
+
+}
+
+.timePickerContainer {
+    margin-top: 2vh;
+    display: flex;
+    gap: 2vh;
+}
+
+
+.plusIcon {
+    height: 2.5vh;
+    width: 2.5vh;
+}
+
+.pushButton:hover {
+    width: 5vh;
+    height: 5vh;
+    background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
+}
+
+.pushButton:active {
+    max-width: 5vh;
+    background-image: linear-gradient(rgb(0 0 0/20%) 0 0);
+}

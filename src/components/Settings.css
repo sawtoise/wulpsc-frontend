@@ -2,6 +2,7 @@
     justify-content: center;
     margin-bottom: 3vh;
     display: flex;
+    gap: 1vh;
     flex-direction: column;
 }
 
