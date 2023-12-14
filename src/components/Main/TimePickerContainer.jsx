@@ -61,17 +61,6 @@ return (
         <div className={"utcLabel"}>Current UTC time is: {trimmedTime}</div>
         <div className={"timePickerContainer"}>
         <TimePicker
-
-            renderInput={(params) => {
-                return (
-                    <TextField
-                        {...params}
-                        sx={{
-                           fontSize: 40
-                        }}
-                    />
-                );
-            }}
             defaultValue={dayjs('2022-04-17T15:30')}
             value={timeValue}
             onChange={(newValue) => setTimeValue(newValue)}
