@@ -1,0 +1,40 @@
+.galleryPageHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 5vh;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    font-weight: bold;
+    font-family: Inter;
+    color: var(--secondary-shade4);
+
+}
+
+.backArrow {
+    width: 4vh;
+}
+
+.arrowContainer {
+    cursor: pointer;
+    color: var(--secondary-shade4);
+}
+
+
+.backArrow:hover {
+    border-radius: 3vh;
+    background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
+}
+
+.backArrow:active {
+    background-image: linear-gradient(rgb(0 0 0/20%) 0 0);
+}
+
+
+.galleryPage {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--secondary-shade2);
+    min-height: 100vh;
+}
+

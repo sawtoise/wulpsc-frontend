@@ -4,7 +4,7 @@
 }
 
 .battery {
-    background-color: #4B9460;
+    background-color: var(--primary-accent);
 }
 
 .batteryContainer {
@@ -15,8 +15,8 @@
 
 .batteryText {
     font-family: Inter;
-    color: #4B9460;
-    font-size: 2vh;
+    color: var(--primary-accent);
+    font-size: 2.5vh;
     font-weight: bold;
 }
 
@@ -61,13 +61,13 @@
     font-size: 2.5vh;
     font-weight: bold;
     font-family: Inter;
-    color: #4B9460;
+    color: var(--primary-accent);
 }
 
 .captureButton {
     cursor:pointer;
     margin-top: 2vh;
-    background-color: #4B9460; /* Green */
+    background-color: var(--primary-accent); /* Green */
     border-radius: 1vh;
     border-style: hidden;
     color: white;
@@ -101,7 +101,7 @@
     font-size: 2.5vh;
     font-weight: 700;
     font-family: 'Inter';
-    color: #666666;
+    color: var(--secondary-shade4);
 }
 
 .infoIcon{
@@ -109,7 +109,7 @@
     padding-right: 0.3vh;
     margin-top: 3vh;
     cursor:pointer;
-    width: 3.4vh;
+    width: 3.8vh;
 }
 
 .infoIcon:hover {
@@ -128,8 +128,8 @@
 .photoTitle {
     margin-top: 3vh;
     flex: 3;
-    font-size: 3vh;
+    font-size: 3.5vh;
     font-weight: bold;
     font-family: Inter;
-    color: #666666;
+    color: var(--secondary-shade4);
 }

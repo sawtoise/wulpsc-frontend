@@ -1,6 +1,6 @@
-import PlaceholderPhoto from '../assets/IMG_VGA_Q2.png';
-import InfoIcon from '../assets/Info.svg';
-import CameraIcon from '../assets/Camera.svg';
+import PlaceholderPhoto from '../../assets/IMG_VGA_Q2.png';
+import InfoIcon from '../../assets/Info.svg';
+import CameraIcon from '../../assets/Camera.svg';
 import './LatestPhoto.css';
 const LatestPhoto = () => {
 

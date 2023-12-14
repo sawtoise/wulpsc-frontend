@@ -8,8 +8,8 @@
     row-gap: 3vh;
     column-gap: 5vh;
 
-
-    background-color: #E8E8E8;
+    min-height: 100vh;
+    background-color: var(--secondary-shade2);
 }
 
 .right-container {

@@ -1,0 +1,32 @@
+.photo {
+    cursor: pointer;
+    border-radius: 1vh;
+}
+
+.photoContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.photoDate {
+    align-self: flex-start;
+    font-size: 1.8vh;
+    font-weight: 700;
+    font-family: 'Inter';
+    color: var(--secondary-shade5);
+}
+
+.photo:hover {
+    -webkit-filter: brightness(70%);
+    transition: all 0.5s ease;
+}
+
+.photo:active {
+    -webkit-filter: brightness(60%);
+    transition: all 0.5s ease;
+}
+
+.example {
+    -webkit-filter: brightness(70%);
+    transition: all 1s ease;
+}

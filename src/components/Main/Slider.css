@@ -2,6 +2,6 @@
     font-size: 2.5vh;
     font-weight: bold;
     font-family: Inter;
-    color: #666666;
+    color: var(--secondary-shade4);
     margin-right: 10vh;
 }

@@ -1,25 +1,41 @@
 .pushButton {
     align-self: center;
     cursor: pointer;
-    background-color: #4B9460;
+    background-color: var(--primary-accent);
     border-radius: 2vh;
-    border-style: hidden;
+    border-style: none;
     width: 5vh;
     height: 5vh;
-    padding-top: 0.5vh;
-
+    display: flex;
+    justify-content: center;
     color: white;
 
 }
 
+.utcLabel {
+    align-self: center;
+    font-size: 2vh;
+    font-style: italic;
+    font-family: Inter;
+    font-weight: 600;
+    color: var(--secondary-shade4);
+}
+
 .timePickerContainer {
-    margin-top: 2vh;
     display: flex;
+    justify-content: center;
     gap: 2vh;
+}
+
+.outerTimePickerContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
 }
 
 
 .plusIcon {
+    align-self: center;
     height: 2.5vh;
     width: 2.5vh;
 }

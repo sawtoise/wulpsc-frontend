@@ -1,6 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Inter');
 
+
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
+  background-color: #4B9460;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -13,4 +20,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+
+:root {
+  --primary-accent: #4B9460;
+  --secondary-shade1: #f6f6f6;
+  --secondary-shade2: #E8E8E8;
+  --secondary-shade3: #BDBDBD;
+  --secondary-shade4: #666666;
+  --secondary-shade5: #464646;
+  --lightest: #ffffff;
+}
+
+
+  .exampleColours {
+    --primary-accent:#4B9460;
+    --secondary-shade1: #f6f6f6;
+    --secondary-shade2: #6B728E;
+    --secondary-shade3: #50577A;
+    --secondary-shade4: #474E68;
+    --secondary-shade5: #404258;
+    --lightest: #ffffff;
+  }
+
+
 
