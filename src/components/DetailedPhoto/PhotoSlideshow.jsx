@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react'
 import Carousel from 'react-material-ui-carousel'
 import { Button, Paper } from '@mui/material'
 import PlaceholderPhoto from '../../assets/IMG_VGA_Q2.png'
 import './PhotoSlideshow.css'
+import parameterService from '../../services/parameters.js'
 
-export default function PhotoSlideshow() {
+export default function PhotoSlideshow( {id} ) {
 
     const items = [
         {
@@ -52,19 +53,44 @@ export default function PhotoSlideshow() {
 
             >
                 {
-                    items.map( (item, i) => <Item key={i} item={item} /> )
+                    items.map( (item, i) => <Item id={id} key={i} item={item} /> )
                 }
             </Carousel>
         </div>
     )
 }
 
-function Item()
-{
-    return (
+function Item( {id} ) {
+
+    const [photo, setPhoto] = useState([])
+
+    useEffect(() => {
+        const fetchLatestPhoto = async () => {
+            try {
+                console.log("ID IS: " + id)
+                const response = await fetch(`https://stereo-backend.fly.dev/photo?id=${id}`)
+                const data = await response.json()
+                console.log(data)
+                if (!response.ok) {
+                    throw new Error(`${response.status} ${parameterService.getErrorMessage(response, data)}`);
+                }
+                setPhoto(data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        fetchLatestPhoto()
+            .catch(console.error)
+    }, [id]);
+
+    {
+        return (
             <img className={"carouselImage"}
-                 src={PlaceholderPhoto}
+                 src={"data:image/jpeg;base64," + photo.image}
                  alt={"s"}
             />
-    )
+        )
+    }
+
 }

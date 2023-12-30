@@ -12,6 +12,7 @@ function Main() {
     const [contrast, setContrast] = React.useState(0);
     const [timeValues, setTimeValues] = React.useState([])
     const [openError, setOpenError] = useState(false);
+    const [latestPhoto, setLatestPhoto] = useState({});
     const [errorMessage, setErrorMessage] = useState();
 
     useEffect(() => {
@@ -34,6 +35,24 @@ function Main() {
             }
         }
 
+        const fetchLatestPhoto = async () => {
+            try {
+                const response = await fetch('https://stereo-backend.fly.dev/get_latest_photo')
+                const data = await response.json()
+                console.log(data)
+                if (!response.ok) {
+                    setErrorMessage(`Error ${response.status}: Could not fetch the latest photo from the backend.`)
+                    throw new Error(`${response.status} ${parameterService.getErrorMessage(response, data)}`);
+                }
+                setLatestPhoto(data)
+            } catch (error) {
+                console.log(error)
+                setOpenError(true)
+            }
+        }
+
+        fetchLatestPhoto()
+            .catch(console.error)
         fetchData()
             .catch(console.error)
     }, []);
@@ -54,7 +73,7 @@ function Main() {
                 </Alert>
             </Snackbar>
             <div className="left-container">
-                <LatestPhoto ></LatestPhoto>
+                <LatestPhoto latestPhoto={latestPhoto}></LatestPhoto>
             </div>
             <div className="right-container">
                 <Settings

@@ -20,7 +20,7 @@ function App() {
                 <Route exact path="/main" element = {<Main/>}/>
                 <Route exact path="*" element = {<Main/>}/>
                 <Route exact path="/gallery" element = {<Gallery/>}/>
-                <Route exact path="/photo" element = {<DetailedPhoto/>}/>
+                <Route path="/photos/:id" element={<DetailedPhoto />} />
             </Routes>
         </LocalizationProvider>
         </Router>

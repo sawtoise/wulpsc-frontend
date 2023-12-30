@@ -25,7 +25,21 @@ const getParameters = async () => {
     }
 }
 
+const getLatestPhotos = async (offset, limit) => {
+    try {
+        const response = await fetch(`https://stereo-backend.fly.dev/photos?offset=${offset}&limit=${limit}`)
+        const data = await response.json()
+        console.log(data)
+        if (!response.ok) {
+            throw new Error(`${response.status} ${getErrorMessage(response, data)}`);
+        }
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export default  {
-    getErrorMessage, getParameters
+    getErrorMessage, getParameters, getLatestPhotos
 }
 

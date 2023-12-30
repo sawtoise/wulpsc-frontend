@@ -1,11 +1,12 @@
 import './DetailedPhoto.css'
 import BackArrowIcon from '../assets/LeftArrow.svg'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import PhotoSlideshow from '../components/DetailedPhoto/PhotoSlideshow.jsx'
 import PhotoInformation from '../components/DetailedPhoto/PhotoInformation.jsx'
 export default function DetailedPhoto() {
 
     const navigate = useNavigate()
+    const {id} = useParams()
 
     return (
         <div className={"detailedPhotoPage"}>
@@ -33,7 +34,7 @@ export default function DetailedPhoto() {
 
             </div>
             <div className={"contentContainer"}>
-                <PhotoSlideshow></PhotoSlideshow>
+                <PhotoSlideshow id={id}></PhotoSlideshow>
                 <PhotoInformation></PhotoInformation>
             </div>
 

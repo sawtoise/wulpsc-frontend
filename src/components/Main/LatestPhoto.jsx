@@ -2,7 +2,7 @@ import PlaceholderPhoto from '../../assets/IMG_VGA_Q2.png';
 import InfoIcon from '../../assets/Info.svg';
 import CameraIcon from '../../assets/Camera.svg';
 import './LatestPhoto.css';
-const LatestPhoto = () => {
+const LatestPhoto = ({latestPhoto}) => {
 
     return (
         <div className={'outerContainer'}>
@@ -13,7 +13,7 @@ const LatestPhoto = () => {
             </div>
         <div className={'imageContainer'}>
     <img className={"image"}
-         src={PlaceholderPhoto}
+         src={"data:image/jpeg;base64," + latestPhoto.image}
          alt={"s"}
     />
         </div>
