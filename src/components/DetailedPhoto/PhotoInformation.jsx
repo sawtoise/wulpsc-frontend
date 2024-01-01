@@ -1,7 +1,7 @@
 import './PhotoInformation.css'
 import { useEffect } from 'react'
 export default function PhotoInformation({data}) {
-    
+
 
     return (
         <div className={"photoInformationContainer"}>
@@ -10,7 +10,7 @@ export default function PhotoInformation({data}) {
             <h2>Saturation: {data.saturation}</h2>
             <h2>Brightness: {data.brightness}</h2>
             <h2>Contrast: {data.contrast}</h2>
-                <h2>{data.timestamp} UTC</h2>
+                <h2>{data.timestamp.substring(0, 19)} UTC</h2>
             </div>
 
         </div>
