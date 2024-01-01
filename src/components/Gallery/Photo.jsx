@@ -13,7 +13,7 @@ const navigate = useNavigate()
                      navigate(`/photos/${data.id}`,)
                  }}
             ></img>
-                <div className={"photoDate"}>10/12/2023 19:20 UTC</div>
+                <div className={"photoDate"}>{data.timestamp.substring(0, 16)} UTC</div>
             </div>
         </>
     )

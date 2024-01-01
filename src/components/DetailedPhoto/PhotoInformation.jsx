@@ -1,15 +1,16 @@
 import './PhotoInformation.css'
-export default function PhotoInformation() {
-
+import { useEffect } from 'react'
+export default function PhotoInformation({data}) {
+    
 
     return (
         <div className={"photoInformationContainer"}>
             <h1>Information</h1>
             <div className={"informationText"}>
-            <h2>Saturation: 0.42</h2>
-            <h2>Saturation: 0.42</h2>
-            <h2>Saturation: 0.42</h2>
-            <h2>12/12/2023 19:20 UTC</h2>
+            <h2>Saturation: {data.saturation}</h2>
+            <h2>Brightness: {data.brightness}</h2>
+            <h2>Contrast: {data.contrast}</h2>
+                <h2>{data.timestamp} UTC</h2>
             </div>
 
         </div>

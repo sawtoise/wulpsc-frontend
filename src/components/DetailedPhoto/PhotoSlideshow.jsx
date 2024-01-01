@@ -5,20 +5,20 @@ import PlaceholderPhoto from '../../assets/IMG_VGA_Q2.png'
 import './PhotoSlideshow.css'
 import parameterService from '../../services/parameters.js'
 
-export default function PhotoSlideshow( {id} ) {
+export default function PhotoSlideshow( {id, data} ) {
+
+
+
 
     const items = [
         {
-            name: "Random Name #1",
-            description: "Probably the most random thing you have ever seen!"
+            name: "default"
         },
         {
-            name: "Random Name #2",
-            description: "Hello World!"
+            name: "left",
         },
         {
-            name: "Random Name #2",
-            description: "Hello World!"
+            name: "right",
         }
     ]
 
@@ -53,41 +53,29 @@ export default function PhotoSlideshow( {id} ) {
 
             >
                 {
-                    items.map( (item, i) => <Item id={id} key={i} item={item} /> )
+
+                    items.map( (item, i) => <Item data={data} id={id} key={i} item={item} /> )
                 }
             </Carousel>
         </div>
     )
 }
 
-function Item( {id} ) {
+function Item( {id, data, item} ) {
 
-    const [photo, setPhoto] = useState([])
-
-    useEffect(() => {
-        const fetchLatestPhoto = async () => {
-            try {
-                console.log("ID IS: " + id)
-                const response = await fetch(`https://stereo-backend.fly.dev/photo?id=${id}`)
-                const data = await response.json()
-                console.log(data)
-                if (!response.ok) {
-                    throw new Error(`${response.status} ${parameterService.getErrorMessage(response, data)}`);
-                }
-                setPhoto(data)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-
-        fetchLatestPhoto()
-            .catch(console.error)
-    }, [id]);
+    let photo = ""
+    if (item.name === "left") {
+        photo = data.left
+    } else if (item.name === "default") {
+        photo = data.image
+    } else if (item.name === "right") {
+        photo = data.right
+    }
 
     {
         return (
             <img className={"carouselImage"}
-                 src={"data:image/jpeg;base64," + photo.image}
+                 src={"data:image/jpeg;base64," + photo}
                  alt={"s"}
             />
         )
