@@ -63,7 +63,7 @@ export default function PhotoSlideshow( {id, data} ) {
 
 function Item( {id, data, item} ) {
 
-    let photo = ""
+    let photo = data.image
     if (item.name === "left") {
         photo = data.left
     } else if (item.name === "default") {

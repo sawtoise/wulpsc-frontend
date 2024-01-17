@@ -3,15 +3,15 @@ import './PhotoList.css'
 import { useEffect, useState } from 'react'
 import parameterService from '../../services/parameters.js'
 
-export default function PhotoList() {
+export default function PhotoList( {currentPage} ) {
 
         const [latestPhotos, setLatestPhotos] = useState([])
 
         useEffect(() => {
                 const fetchLatestPhotos = async () => {
                         try {
-                                const offset = 0
                                 const limit = 15
+                                const offset = limit * (currentPage - 1)
                                 const response = await fetch(`https://stereo-backend.fly.dev/photos?offset=${offset}&limit=${limit}`)
                                 const data = await response.json()
                                 console.log(data)
@@ -26,7 +26,7 @@ export default function PhotoList() {
 
                 fetchLatestPhotos()
                     .catch(console.error)
-        }, []);
+        }, [currentPage]);
 
 
     return (
