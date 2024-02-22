@@ -31,7 +31,7 @@ const Settings = ({
     useEffect(() => {
         const getParameters = async () => {
             try {
-                const response = await fetch('https://stereo-backend.fly.dev/parameters')
+                const response = await fetch(`${parameterService.BASE_URL}/parameters`)
                 const data = await response.json()
                 console.log(data)
                 if (!response.ok) {
@@ -74,7 +74,7 @@ const Settings = ({
         setOpenApplyDialog(false)
         console.log("applying async changes")
         try {
-            const response = await fetch('https://stereo-backend.fly.dev/set_parameters', options)
+            const response = await fetch(`${parameterService.BASE_URL}/set_parameters`, options)
             const data = await response.json()
             console.log(data)
             if (!response.ok) {

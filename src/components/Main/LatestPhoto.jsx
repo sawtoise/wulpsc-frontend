@@ -2,6 +2,18 @@ import PlaceholderPhoto from '../../assets/IMG_VGA_Q2.png';
 import InfoIcon from '../../assets/Info.svg';
 import CameraIcon from '../../assets/Camera.svg';
 import './LatestPhoto.css';
+import paramatersService from "../../services/parameters"
+
+
+
+const handleClick = async () => {
+    try {
+        const data = await fetch(`${paramatersService.BASE_URL}/take_photo`)
+    } catch (err) {
+        console.log(err.message)
+    }
+}
+
 const LatestPhoto = ({latestPhoto}) => {
 
     return (
@@ -21,7 +33,7 @@ const LatestPhoto = ({latestPhoto}) => {
                 10/12/2023 19:20 UTC
             </div>
             <div className={"activeText"}>Active</div>
-            <button className={"captureButton"} type="button">
+            <button className={"captureButton"} type="button" onClick={handleClick}>
                 <div className={"cameraButtonRow"}>
                 <img className={"cameraIcon"}
                      src={CameraIcon}

@@ -26,7 +26,7 @@ export default function DetailedPhoto() {
         const fetchLatestPhoto = async () => {
             try {
                 console.log('ID IS: ' + id)
-                const response = await fetch(`https://stereo-backend.fly.dev/photo?id=${id}`)
+                const response = await fetch(`${parameterService.BASE_URL}/photo?id=${id}`)
                 const data = await response.json()
                 console.log(data)
                 if (!response.ok) {

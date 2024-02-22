@@ -21,7 +21,7 @@ export default function AlertDialog({open, setOpen, applyAsyncChanges, contrast,
         console.log(dataNew)
         /*const getParameters = async () => {
             try {
-                const response = await fetch('https://stereo-backend.fly.dev/parameters')
+                const response = await fetch('${parameterService.BASE_URL}/parameters')
                 const data = await response.json()
                 console.log(data)
                 if (!response.ok) {

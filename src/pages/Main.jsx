@@ -18,7 +18,7 @@ function Main() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('https://stereo-backend.fly.dev/parameters')
+                const response = await fetch(`${parameterService.BASE_URL}/parameters`)
                 const data = await response.json()
                 console.log(data)
                 if (!response.ok) {
@@ -37,7 +37,7 @@ function Main() {
 
         const fetchLatestPhoto = async () => {
             try {
-                const response = await fetch('https://stereo-backend.fly.dev/get_latest_photo')
+                const response = await fetch(`${parameterService.BASE_URL}/get_latest_photo`)
                 const data = await response.json()
                 console.log(data)
                 if (!response.ok) {

@@ -12,7 +12,7 @@ export default function PhotoList( {currentPage} ) {
                         try {
                                 const limit = 15
                                 const offset = limit * (currentPage - 1)
-                                const response = await fetch(`https://stereo-backend.fly.dev/photos?offset=${offset}&limit=${limit}`)
+                                const response = await fetch(`${parameterService.BASE_URL}/photos?offset=${offset}&limit=${limit}`)
                                 const data = await response.json()
                                 console.log(data)
                                 if (!response.ok) {

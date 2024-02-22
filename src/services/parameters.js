@@ -11,9 +11,12 @@ const getErrorMessage = (response, data) => {
     }
 }
 
+//const BASE_URL = "https://stereo-backend.fly.dev"
+const BASE_URL = "http://localhost:8000"
+
 const getParameters = async () => {
     try {
-        const response = await fetch('https://stereo-backend.fly.dev/parameters')
+        const response = await fetch(`${BASE_URL}/parameters`)
         const data = await response.json()
         console.log(data)
         if (!response.ok) {
@@ -27,7 +30,7 @@ const getParameters = async () => {
 
 const getLatestPhotos = async (offset, limit) => {
     try {
-        const response = await fetch(`https://stereo-backend.fly.dev/photos?offset=${offset}&limit=${limit}`)
+        const response = await fetch(`${BASE_URL}/photos?offset=${offset}&limit=${limit}`)
         const data = await response.json()
         console.log(data)
         if (!response.ok) {
@@ -40,6 +43,6 @@ const getLatestPhotos = async (offset, limit) => {
 }
 
 export default  {
-    getErrorMessage, getParameters, getLatestPhotos
+    getErrorMessage, getParameters, getLatestPhotos, BASE_URL
 }
 
