@@ -1,0 +1,13 @@
+.labelText {
+    font-size: 2.2vh;
+    font-weight: bold;
+    font-family: Inter;
+    color: var(--secondary-shade4);
+    margin-right: 10vh;
+}
+
+
+.switchContainer {
+    display: flex;
+    flex-direction: column;
+}

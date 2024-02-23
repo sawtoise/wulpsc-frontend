@@ -5,6 +5,7 @@ import PhotoSlideshow from '../components/DetailedPhoto/PhotoSlideshow.jsx'
 import PhotoInformation from '../components/DetailedPhoto/PhotoInformation.jsx'
 import { useEffect, useState } from 'react'
 import parameterService from '../services/parameters.js'
+import PointcloudView from '../components/DetailedPhoto/PointcloudView.jsx'
 
 export default function DetailedPhoto() {
 

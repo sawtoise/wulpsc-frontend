@@ -1,0 +1,14 @@
+.photoInformationContainer {
+}
+
+h1 {
+    font-family: Inter;
+    font-weight: 600;
+    color: var(--secondary-shade4);
+}
+
+h2 {
+    font-family: Inter;
+    font-weight: 600;
+    color: var(--secondary-shade4);
+}

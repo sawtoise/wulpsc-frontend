@@ -7,8 +7,9 @@ import CheckboxIcon from '../../assets/Checkbox.svg'
 import TimePickerContainer from './TimePickerContainer.jsx'
 import TimeList from './TimeList.jsx'
 import parameterService from '../../services/parameters'
-import { Alert, Snackbar } from '@mui/material'
+import { Alert, FormControlLabel, Snackbar, Switch } from '@mui/material'
 import AlertDialog from './AlertDialog.jsx'
+import ParameterSwitch from './Switch.jsx'
 
 const Settings = ({
                       saturation,
@@ -26,6 +27,7 @@ const Settings = ({
     const [errorMessage, setErrorMessage] = useState();
     const [openApplyDialog, setOpenApplyDialog] = useState(false);
     const [serverData, setServerData] = useState({})
+    const [awbChecked, setAWBChecked] = useState(false)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -92,6 +94,8 @@ const Settings = ({
         setOpenApplyDialog(true);
     };
 
+    const label = { inputProps: { 'aria-label': 'Color switch demo' } };
+
     return (
 
         <div className={'outerSettingsContainer'}>
@@ -109,23 +113,34 @@ const Settings = ({
                     {errorMessage}
                 </Alert>
             </Snackbar>
+            <InputSlider label={'Quality'}
+                         minimum={10}
+                         maximum={63}
+                         value={saturation}
+                         setValue={setSaturation}
+            />
             <InputSlider label={'Saturation'}
-                         minimum={0}
-                         maximum={100}
+                         minimum={-2}
+                         maximum={2}
                          value={saturation}
                          setValue={setSaturation}
             />
             <InputSlider label={'Brightness'}
-                         minimum={0}
-                         maximum={20}
+                         minimum={-2}
+                         maximum={2}
                          value={brightness}
                          setValue={setBrightness}
             />
             <InputSlider label={'Contrast'}
-                         minimum={0}
-                         maximum={100}
+                         minimum={-2}
+                         maximum={2}
                          value={contrast}
                          setValue={setContrast}
+            />
+            <ParameterSwitch
+                label={'AWB'}
+                checked={awbChecked}
+                setChecked={setAWBChecked}
             />
             <TimePickerContainer timeValues={timeValues}
                                  setTimeValues={setTimeValues}
