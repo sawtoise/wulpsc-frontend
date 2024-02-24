@@ -1,135 +1,152 @@
 .image-container {
-    background-color:#D9D9D9;
-    width: 3vh
+  background-color: #d9d9d9;
+  width: 3vh;
 }
 
 .battery {
-    background-color: var(--primary-accent);
+  background-color: var(--primary-accent);
 }
 
 .batteryContainer {
-    margin-top: 2vh;
-    display: flex;
-    flex-direction: column;
+  margin-top: 2vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .batteryText {
-    font-family: Inter;
-    color: var(--primary-accent);
-    font-size: 2.5vh;
-    font-weight: bold;
+  font-family: Inter;
+  color: var(--primary-accent);
+  font-size: 2.5vh;
+  font-weight: bold;
 }
 
 .batteryShape {
-    display: flex;
+  display: flex;
 }
 
 .batteryTip {
-    height: 2vh;
-    align-self: center;
-    border-radius: 0.3vh;
-    width: 0.9vh;
-    background-color: #D9D9D9;
+  height: 2vh;
+  align-self: center;
+  border-radius: 0.3vh;
+  width: 0.9vh;
+  background-color: #d9d9d9;
 }
-
 
 .batteryBackground {
-    height: 2vh;
-    padding: 0.6vh;
-    border-radius: 0.5vh;
-    display: flex;
-    width: 5vh;
-    background-color: #D9D9D9;
+  height: 2vh;
+  padding: 0.6vh;
+  border-radius: 0.5vh;
+  display: flex;
+  width: 5vh;
+  background-color: #d9d9d9;
 }
 
-
 .image {
-    width: 40vh
+  width: 40vh;
 }
 
 .outerContainer {
 }
 
 .photoHeader {
-    margin-bottom: 1vh;
-    border-color: red;
-    display: flex;
-    flex-direction: row;
+  margin-bottom: 1vh;
+  border-color: red;
+  display: flex;
+  flex-direction: row;
 }
 
 .activeText {
-    font-size: 2.5vh;
-    font-weight: bold;
-    font-family: Inter;
-    color: var(--primary-accent);
+  font-size: 2.5vh;
+  font-weight: bold;
+  font-family: Inter;
+  color: var(--primary-accent);
 }
 
 .captureButton {
-    cursor:pointer;
-    margin-top: 2vh;
-    background-color: var(--primary-accent); /* Green */
-    border-radius: 1vh;
-    border-style: hidden;
-    color: white;
-    width: 25vh;
-    padding: 0.8vh 2vh;
-    text-align: center;
-    text-decoration: none;
+  cursor: pointer;
+  margin-top: 2vh;
+  background-color: var(--primary-accent); /* Green */
+  border-radius: 1vh;
+  border-style: hidden;
+  color: white;
+  width: 25vh;
+  padding: 0.8vh 2vh;
+  text-align: center;
+  text-decoration: none;
 
-    display: inline-block;
-    font-size: 3.5vh;
-    font-family: Inter;
-    font-weight: 400;
+  display: inline-block;
+  font-size: 3.5vh;
+  font-family: Inter;
+  font-weight: 400;
+}
+
+.captureButtonDisabled {
+  cursor: pointer;
+  margin-top: 2vh;
+  background-color: var(--secondary-shade4); /* Green */
+  border-radius: 1vh;
+  border-style: hidden;
+  color: white;
+  width: 25vh;
+  padding: 0.8vh 2vh;
+  text-align: center;
+  pointer-events: none;
+  text-decoration: none;
+
+  display: inline-block;
+  font-size: 3.5vh;
+  font-family: Inter;
+  font-weight: 400;
 }
 
 .captureButton:hover {
-    background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
+  background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
 }
 
 .captureButton:active {
-    background-image: linear-gradient(rgb(0 0 0/20%) 0 0);
+  background-image: linear-gradient(rgb(0 0 0/20%) 0 0);
 }
 
 .cameraButtonRow {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .dateText {
-    float: right;
-    font-size: 2.5vh;
-    font-weight: 700;
-    font-family: 'Inter';
-    color: var(--secondary-shade4);
+  float: right;
+  font-size: 2.5vh;
+  font-weight: 700;
+  font-family: "Inter";
+  color: var(--secondary-shade4);
 }
 
-.infoIcon{
-    padding-left: 0.3vh;
-    padding-right: 0.3vh;
-    margin-top: 3vh;
-    cursor:pointer;
-    width: 3.8vh;
+.infoIcon {
+  padding-left: 0.3vh;
+  padding-right: 0.3vh;
+  margin-top: 3vh;
+  cursor: pointer;
+  width: 3.8vh;
 }
 
 .infoIcon:hover {
-    border-radius: 3vh;
-    background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
+  border-radius: 3vh;
+  background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
 }
 
 .cameraIcon {
-    width: 3.8vh;
+  width: 3.8vh;
 }
 
 .image {
-    border-radius: 1vh;
+  border-radius: 1vh;
 }
 
 .photoTitle {
-    margin-top: 3vh;
-    flex: 3;
-    font-size: 3.5vh;
-    font-weight: 600;
-    font-family: 'Inter';
-    color: var(--secondary-shade4);
+  margin-top: 3vh;
+  flex: 3;
+  font-size: 3.5vh;
+  font-weight: 600;
+  font-family: "Inter";
+  color: var(--secondary-shade4);
 }
