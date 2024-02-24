@@ -10,6 +10,6 @@ export default function PointcloudView() {
     return ( <div
         className="online_3d_viewer"
         style={{ width: "500px", height: "500px" }}
-        model="/3d_model_apply.ply"
+        model="/brain.ply"
     />)
 }

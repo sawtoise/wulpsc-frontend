@@ -10,6 +10,7 @@ function Main() {
     const [saturation, setSaturation] = React.useState(0);
     const [brightness, setBrightness] = React.useState(0);
     const [contrast, setContrast] = React.useState(0);
+    const [cameraSettings, setCameraSettings] = React.useState({})
     const [timeValues, setTimeValues] = React.useState([])
     const [openError, setOpenError] = useState(false);
     const [latestPhoto, setLatestPhoto] = useState({});
@@ -25,6 +26,7 @@ function Main() {
                     setErrorMessage(`Error ${response.status}: Could not fetch the latest parameters from the backend.`)
                     throw new Error(`${response.status} ${parameterService.getErrorMessage(response, data)}`);
                 }
+                setCameraSettings(data)
                 setBrightness(data.brightness)
                 setSaturation(data.saturation)
                 setContrast(data.contrast)
@@ -77,6 +79,8 @@ function Main() {
             </div>
             <div className="right-container">
                 <Settings
+                    cameraSettings = {cameraSettings}
+                    setCameraSettings = {setCameraSettings}
                     saturation={saturation}
                     setSaturation={setSaturation}
                     brightness={brightness}

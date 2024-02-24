@@ -1,4 +1,5 @@
 .outerSettingsContainer {
+    margin-top: 3vh;
     justify-content: center;
     margin-bottom: 3vh;
     display: flex;
@@ -8,6 +9,10 @@
 
 .checkboxIcon {
     width: 4vh;
+}
+
+.parameterContainer {
+    flex-wrap: wrap;
 }
 
 .applyButton {
@@ -29,6 +34,7 @@
 }
 
 .buttonColumn {
+    margin-bottom: 3vh;
     align-items: center;
     display: flex;
     flex-direction: column;

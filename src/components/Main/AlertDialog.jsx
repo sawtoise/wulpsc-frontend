@@ -8,7 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { useEffect, useState } from 'react'
 import parameterService from '../../services/parameters'
 
-export default function AlertDialog({open, setOpen, applyAsyncChanges, contrast, brightness, saturation, schedule, data, setSata}) {
+export default function AlertDialog({open, setOpen, applyAsyncChanges, contrast, brightness, saturation, schedule, data, setSata, cameraSettings}) {
 
     const [dataNew, setData] = useState({});
     const [separatedSchedule, setSeparatedSchedule] = useState([])
