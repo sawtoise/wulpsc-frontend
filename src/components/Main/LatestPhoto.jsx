@@ -71,8 +71,10 @@ const LatestPhoto = ({ latestPhoto }) => {
           alt={"s"}
         />
       </div>
-      <div className={"dateText"}>{latestPhoto.length > 0 &&
-          latestPhoto.timestamp.substring(0, 16)}</div>
+      <div className={"dateText"}>{latestPhoto.timestamp ?
+          latestPhoto.timestamp.substring(0, 16) :
+          22
+      }</div>
       <div className={"activeText"}>Active</div>
       <button
         className={isLoading ? "captureButtonDisabled" : "captureButton"}
