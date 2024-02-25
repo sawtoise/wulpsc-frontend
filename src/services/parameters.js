@@ -2,7 +2,7 @@ const getErrorMessage = (response, data) => {
     console.log(response.status)
     if (response.ok) {
         return 'Success'
-    } else if (response.status === 404) {
+    } else if (response.status === 404 || response.status === 500) {
         return data.detail
     } else if (response.status === 422) {
         return data.detail[0].msg
