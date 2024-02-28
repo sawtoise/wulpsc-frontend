@@ -4,7 +4,12 @@
     margin-bottom: 3vh;
     display: flex;
     gap: 1vh;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.alertDialog {
+    justify-self: center;
 }
 
 .checkboxIcon {

@@ -116,8 +116,9 @@ const Settings = ({
     return (
 
         <div className={'outerSettingsContainer'}>
-            <AlertDialog data={serverData} saturation={saturation}
-                         brightness={brightness} contrast={contrast} schedule={timeValues}
+            <div className={'controlContainer'}>
+            <AlertDialog className={"alertDialog"} data={serverData} saturation={saturation}
+                         brightness={brightness} contrast={contrast} schedule={timeValues} cameraSettings={cameraSettings}
                          open={openApplyDialog} setOpen={setOpenApplyDialog} handleClickOpen={handleClickOpen}
                          applyAsyncChanges={applyAsyncChanges}></AlertDialog>
             <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={openSuccess}
@@ -166,13 +167,8 @@ const Settings = ({
                 </button>
 
             </div>
+            </div>
             <div className={'parameterContainer'}>
-                <InputSlider label={'Quality'}
-                             minimum={10}
-                             maximum={63}
-                             value={saturation}
-                             setValue={setSaturation}
-                />
                 <InputSlider label={'Saturation'}
                              minimum={-2}
                              maximum={2}
@@ -184,7 +180,6 @@ const Settings = ({
                                  })
                              }}
                 />
-
 
                 <InputSlider label={'Brightness'}
                              minimum={-2}
@@ -211,80 +206,153 @@ const Settings = ({
                 <InputSlider label={'Special Effect'}
                              minimum={0}
                              maximum={6}
-                             value={contrast}
-                             setValue={setContrast}
+                             value={cameraSettings.special_effect}
+                             setValue={(value) => {
+                                 setCameraSettings({
+                                     ...cameraSettings,
+                                     special_effect: value,
+                                 })
+                             }}
                 />
                 <InputSlider label={'White Balance Mode'}
                              minimum={0}
                              maximum={4}
-                             value={contrast}
-                             setValue={setContrast}
+                             value={cameraSettings.wb_mode}
+                             setValue={(value) => {
+                                 setCameraSettings({
+                                     ...cameraSettings,
+                                     wb_mode: value,
+                                 })
+                             }}
                 />
                 <InputSlider label={'Auto Exposure Level'}
                              minimum={-2}
                              maximum={2}
-                             value={contrast}
-                             setValue={setContrast}
+                             value={cameraSettings.ae_level}
+                             setValue={(value) => {
+                                 setCameraSettings({
+                                     ...cameraSettings,
+                                     ae_level: value,
+                                 })
+                             }}
                 />
                 <InputSlider label={'Auto Exposure Control Value'}
                              minimum={0}
                              maximum={1200}
-                             value={contrast}
-                             setValue={setContrast}
+                             value={cameraSettings.aec_value}
+                             setValue={(value) => {
+                                 setCameraSettings({
+                                     ...cameraSettings,
+                                     aec_value: value,
+                                 })
+                             }}
                 />
                 <InputSlider label={'Auto Gain Control Gain'}
                              minimum={0}
                              maximum={30}
-                             value={contrast}
-                             setValue={setContrast}
+                             value={cameraSettings.agc_gain}
+                             setValue={(value) => {
+                                 setCameraSettings({
+                                     ...cameraSettings,
+                                     agc_gain: value,
+                                 })
+                             }}
                 />
                 <InputSlider label={'Gain Ceiling'}
                              minimum={0}
                              maximum={6}
-                             value={contrast}
-                             setValue={setContrast}
+                             value={cameraSettings.gainceiling}
+                             setValue={(value) => {
+                                 setCameraSettings({
+                                     ...cameraSettings,
+                                     gainceiling: value,
+                                 })
+                             }}
                 />
+            </div>
+            <div className={'parameterContainer'}>
                 <ParameterSwitch
                     label={'Lens Correction'}
-                    checked={awbChecked}
-                    setChecked={setAWBChecked}
+                    checked={cameraSettings.lenc}
+                    setChecked={(value) => {
+                        setCameraSettings({
+                            ...cameraSettings,
+                            lenc: value,
+                        })
+                    }}
                 />
                 <ParameterSwitch
                     label={'Auto Gain Control'}
-                    checked={awbChecked}
-                    setChecked={setAWBChecked}
+                    checked={cameraSettings.agc}
+                    setChecked={(value) => {
+                        setCameraSettings({
+                            ...cameraSettings,
+                            agc: value,
+                        })
+                    }}
                 />
                 <ParameterSwitch
                     label={'Auto Exposure Control'}
-                    checked={awbChecked}
-                    setChecked={setAWBChecked}
+                    checked={cameraSettings.aec}
+                    setChecked={(value) => {
+                        setCameraSettings({
+                            ...cameraSettings,
+                            aec: value,
+                        })
+                    }}
                 />
                 <ParameterSwitch
                     label={'Horizontal Mirror'}
-                    checked={awbChecked}
-                    setChecked={setAWBChecked}
+                    checked={cameraSettings.hmirror}
+                    setChecked={(value) => {
+                        setCameraSettings({
+                            ...cameraSettings,
+                            hmirror: value,
+                        })
+                    }}
                 />
                 <ParameterSwitch
                     label={'Vertical Flip'}
-                    checked={awbChecked}
-                    setChecked={setAWBChecked}
+                    checked={cameraSettings.vflip}
+                    setChecked={(value) => {
+                        setCameraSettings({
+                            ...cameraSettings,
+                            vflip: value,
+                        })
+                    }}
                 />
                 <ParameterSwitch
                     label={'Auto Exposure Control 2'}
-                    checked={awbChecked}
-                    setChecked={setAWBChecked}
+                    checked={cameraSettings.aec2}
+                    setChecked={(value) => {
+                        setCameraSettings({
+                            ...cameraSettings,
+                            aec2: value,
+                        })
+                    }}
                 />
                 <ParameterSwitch
                     label={'BPC'}
-                    checked={awbChecked}
-                    setChecked={setAWBChecked}
+                    checked={cameraSettings.bpc}
+                    setChecked={(value) => {
+                        setCameraSettings({
+                            ...cameraSettings,
+                            bpc: value,
+                        })
+                    }}
                 />
                 <ParameterSwitch
                     label={'WPC'}
-                    checked={awbChecked}
-                    setChecked={setAWBChecked}
+                    checked={cameraSettings.wpc}
+                    setChecked={(value) => {
+                        setCameraSettings({
+                            ...cameraSettings,
+                            wpc: value,
+                        })
+                    }}
                 />
             </div>
+
 
         </div>
     )
