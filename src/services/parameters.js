@@ -12,8 +12,7 @@ const getErrorMessage = (response, data) => {
 }
 
 const BASE_URL = "https://stereo-backend.fly.dev"
-// 0.
-// const BASE_URL = "http://localhost:8000"
+//const BASE_URL = "http://localhost:8000"
 
 const getParameters = async () => {
     try {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Carousel from 'react-material-ui-carousel'
 import { Button, Paper } from '@mui/material'
+import ClickablePhoto from '../ClickablePhoto.jsx'
 import PlaceholderPhoto from '../../assets/IMG_VGA_Q2.png'
 import './PhotoSlideshow.css'
 import parameterService from '../../services/parameters.js'
@@ -43,11 +44,19 @@ export default function PhotoSlideshow( {id, data} ) {
                 navButtonsProps={{   // Move the buttons to the bottom. Unsetting top here to override default style.
                     style: {
                         bottom: '1',
+                        top: 'unset',
                         width: '5vh',
                         height: '5vh',
                         backgroundColor: 'var(--primary-accent)',
                     }
                 }}
+                navButtonsWrapperProps={{   // Move the buttons to the bottom. Unsetting top here to override default style.
+                    style: {
+                        marginTop: '10vh', // 5
+                        bottom: '0',
+                        top: 'unset'
+                    }
+                }} 
                 autoPlay={false}
                 navButtonsAlwaysVisible={true}
 
@@ -74,10 +83,11 @@ function Item( {id, data, item} ) {
 
     {
         return (
-            <img className={"carouselImage"}
-                 src={"data:image/jpeg;base64," + photo}
-                 alt={"s"}
-            />
+            <ClickablePhoto photo={photo} style={"carouselImage"} />
+            // <img className={"carouselImage"}
+            //      src={"data:image/jpeg;base64," + photo}
+            //      alt={"s"}
+            // />
         )
     }
 

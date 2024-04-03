@@ -6,6 +6,7 @@ import "./LatestPhoto.css";
 import paramatersService from "../../services/parameters";
 import { Alert, Snackbar } from "@mui/material";
 import parameterService from "../../services/parameters.js";
+import ClickablePhoto from "../ClickablePhoto.jsx";
 
 const handleClick = async (
   setLoading,
@@ -92,11 +93,12 @@ const LatestPhoto = ({ latestPhoto, setLatestPhoto }) => {
         <img className={"infoIcon"} src={InfoIcon} />
       </div>
       <div className={"imageContainer"}>
-        <img
+        {/* <img
           className={"image"}
           src={"data:image/jpeg;base64," + latestPhoto.image}
           alt={"s"}
-        />
+        /> */}
+        <ClickablePhoto photo={latestPhoto.image} style={"image"} />
       </div>
       <div className={"dateText"}>
         {latestPhoto.timestamp ? latestPhoto.timestamp.substring(0, 16) : 22}
