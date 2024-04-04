@@ -7,6 +7,12 @@
   background-color: var(--primary-accent);
 }
 
+.buttonsRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
 .batteryContainer {
   margin-top: 2vh;
   display: flex;

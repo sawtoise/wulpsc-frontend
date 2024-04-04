@@ -11,7 +11,8 @@ const getErrorMessage = (response, data) => {
     }
 }
 
-const BASE_URL = "https://stereo-backend.fly.dev"
+const BASE_URL = "http://192.168.0.75:8000"
+//const BASE_URL = "https://stereo-backend.fly.dev"
 //const BASE_URL = "http://localhost:8000"
 
 const getParameters = async () => {
@@ -42,7 +43,47 @@ const getLatestPhotos = async (offset, limit) => {
     }
 }
 
+const getObjectDimensions = async (id, coords, setErrorMessage, setOpenError, setDimensionData, setOpenDialog) => {
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            ...coords,
+        })
+    }
+
+    let data;
+    let response;
+    try {
+        response = await fetch(`${BASE_URL}/get_object_dimensions?id=${id}`, options);
+        data = await response.json();
+        if (!response.ok) {
+            setErrorMessage(
+                `Error ${response.status}: ${getErrorMessage(
+                    response,
+                    data
+                )}`
+            );
+            throw new Error(
+                `${response.status} ${getErrorMessage(response, data)}`
+            );
+        }
+        console.log("RETURNED DISSTANCE STUFF IS", data)
+        setDimensionData(data)
+        setOpenDialog(true)
+        return data
+    } catch (err) {
+        setOpenError(true)
+        console.log(err.message);
+    }
+};
+
+
+
+
 export default  {
-    getErrorMessage, getParameters, getLatestPhotos, BASE_URL
+    getErrorMessage, getParameters, getLatestPhotos, getObjectDimensions, BASE_URL
 }
 

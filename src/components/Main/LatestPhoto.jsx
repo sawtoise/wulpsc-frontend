@@ -2,11 +2,13 @@ import { useState } from "react";
 import PlaceholderPhoto from "../../assets/IMG_VGA_Q2.png";
 import InfoIcon from "../../assets/Info.svg";
 import CameraIcon from "../../assets/Camera.svg";
+import SearchIcon from "../../assets/Search_Magnifying_Glass.svg";
 import "./LatestPhoto.css";
 import paramatersService from "../../services/parameters";
 import { Alert, Snackbar } from "@mui/material";
 import parameterService from "../../services/parameters.js";
 import ClickablePhoto from "../ClickablePhoto.jsx";
+import AlertDialogDimensions from './AlertDialogDimensions.jsx'
 
 const handleClick = async (
   setLoading,
@@ -42,11 +44,32 @@ const handleClick = async (
   }
 };
 
+const handleAnalyseClick = async (
+    id,
+    coords,
+    setOpenDialog,
+    setDimensionData,
+    setErrorMessage,
+    setOpenError,
+) => {
+     await paramatersService.getObjectDimensions(id, coords, setErrorMessage, setOpenError, setDimensionData, setOpenDialog)
+};
+
 const LatestPhoto = ({ latestPhoto, setLatestPhoto }) => {
   const [isLoading, setLoading] = useState(false);
   const [openSuccess, setOpenSuccess] = useState(false);
   const [openError, setOpenError] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
+  const [openDimensionDialog, setOpenDimensionDialog] = useState(false);
+  const [dimensionData, setDimensionData] = useState({})
+  const [coords, setCoords] = useState({
+        x1: -1,
+        y1: -1,
+        x2: -1,
+        y2: -1
+  });
+
+  const isBoxShown = coords.x1 != -1 && coords.y1 != -1 && coords.x2 != -1 && coords.y2 != -1
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -59,6 +82,8 @@ const LatestPhoto = ({ latestPhoto, setLatestPhoto }) => {
 
   return (
     <div className={"outerContainer"}>
+        <AlertDialogDimensions setOpen={setOpenDimensionDialog} open={openDimensionDialog} data={dimensionData} >
+        </AlertDialogDimensions>
       <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={openSuccess}
@@ -98,12 +123,30 @@ const LatestPhoto = ({ latestPhoto, setLatestPhoto }) => {
           src={"data:image/jpeg;base64," + latestPhoto.image}
           alt={"s"}
         /> */}
-        <ClickablePhoto photo={latestPhoto.image} style={"image"} />
+        <ClickablePhoto coords={coords} setCoords={setCoords} id={latestPhoto.id} photo={latestPhoto.image}
+                        style={"image"} />
       </div>
       <div className={"dateText"}>
         {latestPhoto.timestamp ? latestPhoto.timestamp.substring(0, 16) : 22}
       </div>
       <div className={"activeText"}>Active</div>
+
+        <div className={"buttonsRow"}>
+
+        <button
+            className={!isBoxShown ? "captureButtonDisabled" : "captureButton"}
+            type="button"
+            onClick={() =>
+               handleAnalyseClick(latestPhoto.id, coords, setOpenDimensionDialog, setDimensionData, setErrorMessage, setOpenError)
+            }
+            disabled={!isBoxShown}
+        >
+            <div className={"cameraButtonRow"}>
+                <img className={"cameraIcon"} src={SearchIcon} alt={"s"} />
+                Analyse
+            </div>
+        </button>
+
       <button
         className={isLoading ? "captureButtonDisabled" : "captureButton"}
         type="button"
@@ -123,6 +166,9 @@ const LatestPhoto = ({ latestPhoto, setLatestPhoto }) => {
           Capture
         </div>
       </button>
+
+        </div>
+
     </div>
   );
 };
