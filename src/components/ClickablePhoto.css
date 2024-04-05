@@ -3,6 +3,10 @@
     display: inline-block; /* <= shrinks container to image size */
     transition: transform 150ms ease-in-out;
   }
+
+.clickablePhoto {
+    width: 100%
+}
   
   .img-overlay-wrap img { /* <= optional, for responsiveness */
      display: block;

@@ -1,94 +1,78 @@
 import React, { useEffect, useState } from 'react'
-import Carousel from 'react-material-ui-carousel'
-import { Button, Paper } from '@mui/material'
 import ClickablePhoto from '../ClickablePhoto.jsx'
-import PlaceholderPhoto from '../../assets/IMG_VGA_Q2.png'
 import './PhotoSlideshow.css'
-import parameterService from '../../services/parameters.js'
+import LeftArrow from '../../assets/ButtonLeftArrow.svg'
+import RightArrow from '../../assets/ButtonRightArrow.svg'
+import SearchIcon from '../../assets/Search_Magnifying_Glass.svg'
+import paramatersService from '../../services/parameters.js'
 
-export default function PhotoSlideshow( {id, data} ) {
+export default function PhotoSlideshow( {id, data, coords, setCoords, handleAnalyse} ) {
 
-
-
-
-    const items = [
-        {
-            name: "default"
-        },
-        {
-            name: "left",
-        },
-        {
-            name: "right",
+    const [index, setIndex] = useState(1)
+    const [selectedImage, setSelectedImage] = useState(data.image)
+    
+    useEffect(() => {   
+        if (index === 0 ) {
+            setSelectedImage(data.image)
+        } else if (index === 1) {
+            setSelectedImage(data.left)
+        } else if (index === 2) {
+            setSelectedImage(data.right)
         }
-    ]
+    }, [data.image, data.left, data.right, index]);
 
+    const isBoxShown = coords.x1 != -1 && coords.y1 != -1 && coords.x2 != -1 && coords.y2 != -1
+
+    const handleNextClick = () => {
+        const newIndex = (index + 1) % 3;
+        setIndex(newIndex)
+    }
+
+    const handlePreviousClick = () => {
+        const newIndex = (3-1 + index) % 3
+        setIndex(newIndex)
+    }
 
     return (
-        <div className={"carouselContainer"}>
-            <Carousel
-                swipe={true}
-                indicatorContainerProps={{
-                    style: {
-                        marginTop: '0px', // 5
+        <>
+        <div className={"photoContainer"}>
+            <ClickablePhoto photo={selectedImage} coords={coords} setCoords={setCoords} />
+            <div className={"buttonRow"}>
 
-                    }
+                <button className={"captureButton"} onClick={handlePreviousClick}>
+                    <div className={"nextButtonRow"}>
+                    <img className={"buttonIcon"} src={LeftArrow} alt={"s"} />
+                        Previous
+                </div>
+                </button>
 
-                }}
-                activeIndicatorIconButtonProps={{
-                    style: {
+                <button className={"captureButton"} onClick={handleNextClick}>
+                    <div className={"nextButtonRow"}>
+                        Next
+                        <img className={"buttonIcon"} src={RightArrow} alt={"s"} />
+                    </div>
+                </button>
 
-                        color: 'var(--primary-accent)'
-                    }
-                }}
-                navButtonsProps={{   // Move the buttons to the bottom. Unsetting top here to override default style.
-                    style: {
-                        bottom: '1',
-                        top: 'unset',
-                        width: '5vh',
-                        height: '5vh',
-                        backgroundColor: 'var(--primary-accent)',
-                    }
-                }}
-                navButtonsWrapperProps={{   // Move the buttons to the bottom. Unsetting top here to override default style.
-                    style: {
-                        marginTop: '10vh', // 5
-                        bottom: '0',
-                        top: 'unset'
-                    }
-                }} 
-                autoPlay={false}
-                navButtonsAlwaysVisible={true}
+            </div>
 
+            <div className={"analyseButtonRow"}>
+
+            <button
+                className={!isBoxShown ? "captureButtonDisabled" : "captureButton"}
+                type="button"
+                disabled={!isBoxShown}
+                onClick={handleAnalyse}
             >
-                {
+                <div className={"cameraButtonRow"}>
+                    <img className={"cameraIcon"} src={SearchIcon} alt={"s"} />
+                    Analyse
+                </div>
+            </button>
 
-                    items.map( (item, i) => <Item data={data} id={id} key={i} item={item} /> )
-                }
-            </Carousel>
+            </div>
+
         </div>
+
+        </>
     )
-}
-
-function Item( {id, data, item} ) {
-
-    let photo = data.image
-    if (item.name === "left") {
-        photo = data.left
-    } else if (item.name === "default") {
-        photo = data.image
-    } else if (item.name === "right") {
-        photo = data.right
-    }
-
-    {
-        return (
-            <ClickablePhoto photo={photo} style={"carouselImage"} />
-            // <img className={"carouselImage"}
-            //      src={"data:image/jpeg;base64," + photo}
-            //      alt={"s"}
-            // />
-        )
-    }
-
 }

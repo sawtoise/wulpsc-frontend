@@ -26,7 +26,7 @@ const handleClick = async (
     }
 };
 
-export default function ClickablePhoto( {id, photo, style, coords, setCoords} ) {
+export default function ClickablePhoto( { photo, coords, setCoords} ) {
     const width = Math.abs(coords.x2 - coords.x1)
     const height = Math.abs(coords.y2 - coords.y1)
     const showBox = coords.x1 != -1 && coords.y1 != -1 && coords.x2 != -1 && coords.y2 != -1
@@ -49,7 +49,8 @@ export default function ClickablePhoto( {id, photo, style, coords, setCoords} ) 
 
     return (
         <div className="img-overlay-wrap" onClick={(e) => addPoint(e, coords, setCoords)}>
-            <img 
+            <img
+                className={"clickablePhoto"}
              src={"data:image/jpeg;base64," + photo}
              alt={"s"}
              />
