@@ -9,6 +9,7 @@ import { Alert, Snackbar } from "@mui/material";
 import parameterService from "../../services/parameters.js";
 import ClickablePhoto from "../ClickablePhoto.jsx";
 import AlertDialogDimensions from './AlertDialogDimensions.jsx'
+import AlertDialogTutorial from './AlertDialogTutorial.jsx'
 
 const handleClick = async (
   setLoading,
@@ -61,6 +62,7 @@ const LatestPhoto = ({ latestPhoto, setLatestPhoto }) => {
   const [openError, setOpenError] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
   const [openDimensionDialog, setOpenDimensionDialog] = useState(false);
+  const [openTutorialDialog, setOpenTutorialDialog] = useState(false)
   const [dimensionData, setDimensionData] = useState({})
   const [coords, setCoords] = useState({
         x1: -1,
@@ -82,6 +84,7 @@ const LatestPhoto = ({ latestPhoto, setLatestPhoto }) => {
 
   return (
     <div className={"outerContainer"}>
+        <AlertDialogTutorial setOpen={setOpenTutorialDialog} open={openTutorialDialog}></AlertDialogTutorial>
         <AlertDialogDimensions setOpen={setOpenDimensionDialog} open={openDimensionDialog} data={dimensionData} >
         </AlertDialogDimensions>
       <Snackbar
@@ -115,14 +118,10 @@ const LatestPhoto = ({ latestPhoto, setLatestPhoto }) => {
       <div className={"photoHeader"}>
         <Battery percentage={"50%"} />
         <div className={"photoTitle"}>Last photo</div>
-        <img className={"infoIcon"} src={InfoIcon} />
+        <img className={"infoIcon"} src={InfoIcon}
+             onClick={() => setOpenTutorialDialog(true)} />
       </div>
       <div className={"imageContainer"}>
-        {/* <img
-          className={"image"}
-          src={"data:image/jpeg;base64," + latestPhoto.image}
-          alt={"s"}
-        /> */}
         <ClickablePhoto coords={coords} setCoords={setCoords} id={latestPhoto.id} photo={latestPhoto.image}
                         style={"image"} />
       </div>

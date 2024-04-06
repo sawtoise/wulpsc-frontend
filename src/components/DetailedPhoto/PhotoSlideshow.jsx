@@ -10,7 +10,7 @@ export default function PhotoSlideshow( {id, data, coords, setCoords, handleAnal
 
     const [index, setIndex] = useState(1)
     const [selectedImage, setSelectedImage] = useState(data.image)
-    
+
     useEffect(() => {   
         if (index === 0 ) {
             setSelectedImage(data.image)
@@ -68,11 +68,8 @@ export default function PhotoSlideshow( {id, data, coords, setCoords, handleAnal
                     Analyse
                 </div>
             </button>
-
             </div>
-
         </div>
-
         </>
     )
 }
