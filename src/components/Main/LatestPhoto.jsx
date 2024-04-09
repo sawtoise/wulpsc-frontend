@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import PlaceholderPhoto from "../../assets/IMG_VGA_Q2.png";
 import InfoIcon from "../../assets/Info.svg";
 import CameraIcon from "../../assets/Camera.svg";
@@ -10,51 +10,11 @@ import parameterService from "../../services/parameters.js";
 import ClickablePhoto from "../ClickablePhoto.jsx";
 import AlertDialogDimensions from './AlertDialogDimensions.jsx'
 import AlertDialogTutorial from './AlertDialogTutorial.jsx'
+import LatestPhotoSlideshow from './LatestPhotoSlideshow.jsx'
+import './LatestPhotoSlideshow.css'
 
-const handleClick = async (
-  setLoading,
-  setErrorMessage,
-  setOpenError,
-  setOpenSuccess,
-  setLatestPhoto
-) => {
-  let data;
-  let response;
-  try {
-    setLoading(true);
-    response = await fetch(`${paramatersService.BASE_URL}/take_photo`);
-    data = await response.json();
-    setLoading(false);
-    if (!response.ok) {
-      setErrorMessage(
-        `Error ${response.status}: ${parameterService.getErrorMessage(
-          response,
-          data
-        )}`
-      );
-      throw new Error(
-        `${response.status} ${parameterService.getErrorMessage(response, data)}`
-      );
-    }
-    setLatestPhoto(data);
-    setOpenSuccess(true);
-  } catch (err) {
-    setOpenError(true);
-    setLoading(false);
-    console.log(err.message);
-  }
-};
 
-const handleAnalyseClick = async (
-    id,
-    coords,
-    setOpenDialog,
-    setDimensionData,
-    setErrorMessage,
-    setOpenError,
-) => {
-     await paramatersService.getObjectDimensions(id, coords, setErrorMessage, setOpenError, setDimensionData, setOpenDialog)
-};
+
 
 const LatestPhoto = ({ latestPhoto, setLatestPhoto }) => {
   const [isLoading, setLoading] = useState(false);
@@ -71,7 +31,6 @@ const LatestPhoto = ({ latestPhoto, setLatestPhoto }) => {
         y2: -1
   });
 
-  const isBoxShown = coords.x1 != -1 && coords.y1 != -1 && coords.x2 != -1 && coords.y2 != -1
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -81,6 +40,40 @@ const LatestPhoto = ({ latestPhoto, setLatestPhoto }) => {
     setOpenSuccess(false);
     setOpenError(false);
   };
+
+    const handleAnalyseClick = async (
+    ) => {
+        await paramatersService.getObjectDimensions(latestPhoto.id, coords, setErrorMessage, setOpenError, setDimensionData, setOpenDimensionDialog)
+    };
+
+    const handleCaptureClick = async (
+    ) => {
+        let data;
+        let response;
+        try {
+            setLoading(true);
+            response = await fetch(`${paramatersService.BASE_URL}/take_photo`);
+            data = await response.json();
+            setLoading(false);
+            if (!response.ok) {
+                setErrorMessage(
+                    `Error ${response.status}: ${parameterService.getErrorMessage(
+                        response,
+                        data
+                    )}`
+                );
+                throw new Error(
+                    `${response.status} ${parameterService.getErrorMessage(response, data)}`
+                );
+            }
+            setLatestPhoto(data);
+            setOpenSuccess(true);
+        } catch (err) {
+            setOpenError(true);
+            setLoading(false);
+            console.log(err.message);
+        }
+    };
 
   return (
     <div className={"outerContainer"}>
@@ -116,55 +109,19 @@ const LatestPhoto = ({ latestPhoto, setLatestPhoto }) => {
         </Alert>
       </Snackbar>
       <div className={"photoHeader"}>
-        <Battery percentage={"50%"} />
+          <div className={"activeText"}>Active</div>
         <div className={"photoTitle"}>Last photo</div>
         <img className={"infoIcon"} src={InfoIcon}
              onClick={() => setOpenTutorialDialog(true)} />
       </div>
-      <div className={"imageContainer"}>
-        <ClickablePhoto coords={coords} setCoords={setCoords} id={latestPhoto.id} photo={latestPhoto.image}
-                        style={"image"} />
-      </div>
-      <div className={"dateText"}>
-        {latestPhoto.timestamp ? latestPhoto.timestamp.substring(0, 16) : 22}
-      </div>
-      <div className={"activeText"}>Active</div>
+        <LatestPhotoSlideshow data={latestPhoto} coords={coords} setCoords={setCoords} handleAnalyse={handleAnalyseClick}
+                              handleCaptureClick={handleCaptureClick} isLoading={isLoading}
+        ></LatestPhotoSlideshow>
+
 
         <div className={"buttonsRow"}>
 
-        <button
-            className={!isBoxShown ? "captureButtonDisabled" : "captureButton"}
-            type="button"
-            onClick={() =>
-               handleAnalyseClick(latestPhoto.id, coords, setOpenDimensionDialog, setDimensionData, setErrorMessage, setOpenError)
-            }
-            disabled={!isBoxShown}
-        >
-            <div className={"cameraButtonRow"}>
-                <img className={"cameraIcon"} src={SearchIcon} alt={"s"} />
-                Analyse
-            </div>
-        </button>
 
-      <button
-        className={isLoading ? "captureButtonDisabled" : "captureButton"}
-        type="button"
-        onClick={() =>
-          handleClick(
-            setLoading,
-            setErrorMessage,
-            setOpenError,
-            setOpenSuccess,
-            setLatestPhoto
-          )
-        }
-        disabled={isLoading}
-      >
-        <div className={"cameraButtonRow"}>
-          <img className={"cameraIcon"} src={CameraIcon} alt={"s"} />
-          Capture
-        </div>
-      </button>
 
         </div>
 

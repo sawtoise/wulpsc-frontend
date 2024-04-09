@@ -55,13 +55,14 @@
 }
 
 .photoHeader {
-  margin-bottom: 1vh;
+  margin-bottom: 0.5vh;
   border-color: red;
   display: flex;
   flex-direction: row;
 }
 
 .activeText {
+  align-self: flex-end;
   font-size: 2.5vh;
   font-weight: bold;
   font-family: Inter;
@@ -130,7 +131,7 @@
 .infoIcon {
   padding-left: 0.3vh;
   padding-right: 0.3vh;
-  margin-top: 3vh;
+  margin-top: 0vh;
   cursor: pointer;
   width: 3.8vh;
 }
@@ -149,7 +150,7 @@
 }
 
 .photoTitle {
-  margin-top: 3vh;
+  margin-top: 0vh;
   flex: 3;
   font-size: 3.5vh;
   font-weight: 600;

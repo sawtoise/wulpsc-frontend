@@ -1,0 +1,34 @@
+.detailedPhotoPage {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--secondary-shade2);
+    min-height: 100vh;
+}
+
+.contentContainer {
+    align-self: center;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3vh;
+}
+
+.tradeshowPhoto {
+    width: 35%
+}
+
+.detailedPageHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 5vh;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    font-weight: bold;
+    font-family: Inter;
+    color: var(--secondary-shade4);
+}
+
+

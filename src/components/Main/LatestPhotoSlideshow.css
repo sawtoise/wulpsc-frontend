@@ -1,0 +1,60 @@
+.carouselImage {
+
+
+}
+
+.buttonRow {
+    justify-content: center;
+    display: flex;
+    gap: 3vh;
+
+}
+
+.dateHeader {
+    margin-top: 0.5vh ;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.analyseButtonRow {
+    display: flex;
+    flex-direction: row;
+    gap: 3vh;
+}
+
+.nextButtonRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.buttonIcon {
+    width: 3.8vh;
+}
+
+.captureButton:hover {
+    background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
+}
+
+.captureButton:active {
+    background-image: linear-gradient(rgb(0 0 0/20%) 0 0);
+}
+
+.captureButton {
+    cursor: pointer;
+    margin-top: 2vh;
+    background-color: var(--primary-accent); /* Green */
+    border-radius: 1vh;
+    border-style: hidden;
+    color: white;
+    width: 25vh;
+    padding: 0.8vh 2vh;
+    text-align: center;
+    text-decoration: none;
+
+    display: inline-block;
+    font-size: 3.5vh;
+    font-family: Inter;
+    font-weight: 400;
+}

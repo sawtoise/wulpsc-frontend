@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import ClickablePhoto from '../ClickablePhoto.jsx'
-import './PhotoSlideshow.css'
+import './LatestPhotoSlideshow.css'
 import LeftArrow from '../../assets/ButtonLeftArrow.svg'
 import RightArrow from '../../assets/ButtonRightArrow.svg'
 import SearchIcon from '../../assets/Search_Magnifying_Glass.svg'
 import paramatersService from '../../services/parameters.js'
+import CameraIcon from '../../assets/Camera.svg'
 
-export default function PhotoSlideshow( {id, data, coords, setCoords, handleAnalyse} ) {
+export default function LatestPhotoSlideshow( {id, data, coords, setCoords, handleAnalyse, handleCaptureClick, isLoading} ) {
 
     const [index, setIndex] = useState(1)
     const [selectedImage, setSelectedImage] = useState(data.image)
@@ -38,7 +39,17 @@ export default function PhotoSlideshow( {id, data, coords, setCoords, handleAnal
         <div className={"photoContainer"}>
             <ClickablePhoto photo={selectedImage} coords={coords} setCoords={setCoords} />
 
+            <div className={"dateHeader"}>
+
+            <div className={"dateText"}>
+                {data.timestamp ? data.timestamp.substring(0, 16) : 22}
+            </div>
+
+
+            </div>
+
             <div className={"buttonRow"}>
+
 
                 <button className={"captureButton"} onClick={handlePreviousClick}>
                     <div className={"nextButtonRow"}>
@@ -69,6 +80,20 @@ export default function PhotoSlideshow( {id, data, coords, setCoords, handleAnal
                     Analyse
                 </div>
             </button>
+
+                <button
+                    className={isLoading ? "captureButtonDisabled" : "captureButton"}
+                    type="button"
+                    onClick={() =>
+                        handleCaptureClick()
+                    }
+                    disabled={isLoading}
+                >
+                    <div className={"cameraButtonRow"}>
+                        <img className={"cameraIcon"} src={CameraIcon} alt={"s"} />
+                        Capture
+                    </div>
+                </button>
 
             </div>
         </div>
