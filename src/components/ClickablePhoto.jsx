@@ -29,6 +29,8 @@ const handleClick = async (
 export default function ClickablePhoto( { photo, coords, setCoords} ) {
     const width = Math.abs(coords.x2 - coords.x1)
     const height = Math.abs(coords.y2 - coords.y1)
+    let topX = -1
+    let topY = -1
     const showBox = coords.x1 != -1 && coords.y1 != -1 && coords.x2 != -1 && coords.y2 != -1
     const showFirstPoint = !showBox && coords.x1 != -1 && coords.y1 != -1
 
@@ -43,6 +45,9 @@ export default function ClickablePhoto( { photo, coords, setCoords} ) {
     // }
 
     if (showBox) {
+         topX = Math.min(coords.x1, coords.x2)
+         topY = Math.min(coords.y1, coords.y2)
+        console.log(`Topx: ${topX} topY: ${topY} x1: ${coords.x1} x2: ${coords.x2} y1: ${coords.y1} y2: ${coords.y2}`)
         //parameterService.getObjectDimensions(id, coords)
         //handleClick(id, options)
     }
@@ -56,7 +61,7 @@ export default function ClickablePhoto( { photo, coords, setCoords} ) {
              />
              {showBox &&
              <svg viewBox="0 0 617 444" >
-             <rect x={coords.x1} y={coords.y1} width={width} height={height} stroke="black" strokeWidth="3" fill="none"/>
+             <rect x={topX} y={topY} width={width} height={height} stroke="black" strokeWidth="3" fill="none"/>
                 </svg>
              }
              {showFirstPoint &&
