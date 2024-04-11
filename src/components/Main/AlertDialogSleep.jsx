@@ -8,7 +8,18 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { useEffect, useState } from 'react'
 import parameterService from '../../services/parameters'
 
-export default function AlertDialog({open, setOpen, data}) {
+export default function AlertDialog({open, setOpen, handleSleepClick, data}) {
+
+    const [dataNew, setData] = useState({});
+
+
+    useEffect(() => {
+        setData(data)
+        console.log(dataNew)
+    }, [])
+
+    let t = new Date()
+    t.setSeconds(t.getSeconds() + data.sleep)
 
     const handleClose = () => {
         setOpen(false);
@@ -23,24 +34,22 @@ export default function AlertDialog({open, setOpen, data}) {
                 style={{height: '100vh'}}
             >
                 <DialogTitle id="alert-dialog-title">
-                    {"Object Dimensions"}
+                    {"Set the system to sleep?"}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        Distance: {data.distance ? data.distance.toFixed() : 0} cm
+                        Are you sure you want to hibernate the system for {data.sleep} seconds?
                         <br></br>
-                        Distance Diff: {data.distance_diff ? data.distance_diff.toFixed() : 0} cm
-                        <br></br>
-                        Width: {data.width ? data.width.toFixed() : 0} cm
-                        <br></br>
-                        Height: {data.height ? data.height.toFixed() : 0} cm
-                        <br></br>
-                        Length: {data.length ? data.length.toFixed() : 0} cm
-                        <br></br>
+                        It will be active again on:
+                        <p></p>
+                        {t ? t.toString() : ""}
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Ok</Button>
+                    <Button onClick={handleClose}>Disagree</Button>
+                    <Button onClick={handleSleepClick} autoFocus>
+                        Agree
+                    </Button>
                 </DialogActions>
             </Dialog>
     );

@@ -50,6 +50,7 @@ export default function AlertDialog({open, setOpen, applyAsyncChanges, contrast,
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
+                style={{height: '100vh'}}
             >
                 <DialogTitle id="alert-dialog-title">
                     {"Apply new parameter changes?"}
@@ -74,21 +75,21 @@ export default function AlertDialog({open, setOpen, applyAsyncChanges, contrast,
                         <br></br>
                         Gain Ceiling: {data.gainceiling} to {cameraSettings.gainceiling}
                         <br></br>
-                        Lens Correction: {data.lenc ? data.lenc.toString() : false} to {cameraSettings.lenc ? cameraSettings.lenc.toString() : false}
+                        Lens Correction: {data.lenc ? data.lenc.toString() : "false"} to {cameraSettings.lenc ? cameraSettings.lenc.toString() : "false"}
                         <br></br>
-                        Auto Gain Control: {data.agc ? data.agc.toString() : false} to {cameraSettings.agc ? cameraSettings.agc.toString() : false}
+                        Auto Gain Control: {data.agc ? data.agc.toString() : "false"} to {cameraSettings.agc ? cameraSettings.agc.toString() : "false"}
                         <br></br>
-                        Auto Exposure Control: {data.aec ? data.aec.toString() : false} to {cameraSettings.aec? cameraSettings.aec.toString() : false}
+                        Auto Exposure Control: {data.aec ? data.aec.toString() : "false"} to {cameraSettings.aec? cameraSettings.aec.toString() : "false"}
                         <br></br>
-                        Horizontal Mirror: {data.hmirror ? data.hmirror.toString() : false} to {cameraSettings.hmirror ? cameraSettings.hmirror.toString() : false}
+                        Horizontal Mirror: {data.hmirror ? data.hmirror.toString() : "false"} to {cameraSettings.hmirror ? cameraSettings.hmirror.toString() : "false"}
                         <br></br>
-                        Vertical Flip: {data.vflip ? data.vflip.toString() : false} to {cameraSettings.vflip ? cameraSettings.vflip.toString() : false}
+                        Vertical Flip: {data.vflip ? data.vflip.toString() : "false"} to {cameraSettings.vflip ? cameraSettings.vflip.toString() : "false"}
                         <br></br>
-                        Auto Exposure Control 2: {data.aec2 ? data.aec2.toString() : false} to {cameraSettings.aec2 ? cameraSettings.aec2.toString() : false}
+                        Auto Exposure Control 2: {data.aec2 ? data.aec2.toString() : "false"} to {cameraSettings.aec2 ? cameraSettings.aec2.toString() : "false"}
                         <br></br>
-                        BPC: {data.bpc ? data.bpc.toString() : false} to {cameraSettings.bpc ? cameraSettings.bpc.toString() : false}
+                        BPC: {data.bpc ? data.bpc.toString() : "false"} to {cameraSettings.bpc ? cameraSettings.bpc.toString() : "false"}
                         <br></br>
-                        WPC: {data.wpc ? data.wpc.toString() : false} to {cameraSettings.wpc ? cameraSettings.wpc.toString() : false}
+                        WPC: {data.wpc ? data.wpc.toString() : "false"} to {cameraSettings.wpc ? cameraSettings.wpc.toString() : "false"}
                         <br></br>
                         Schedule: {data.schedule}
                         <br></br>

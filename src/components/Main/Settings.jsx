@@ -9,6 +9,7 @@ import TimeList from './TimeList.jsx'
 import parameterService from '../../services/parameters'
 import { Alert, Snackbar } from '@mui/material'
 import AlertDialog from './AlertDialog.jsx'
+import AlertDialogSleep from './AlertDialogSleep.jsx'
 import ParameterSwitch from './Switch.jsx'
 
 const Settings = ({
@@ -28,9 +29,11 @@ const Settings = ({
     const [openError, setOpenError] = useState(false)
     const [errorMessage, setErrorMessage] = useState()
     const [openApplyDialog, setOpenApplyDialog] = useState(false)
+    const [openSleepDialog, setOpenSleepDialog] = useState(false)
     const [serverData, setServerData] = useState({})
     const [awbChecked, setAWBChecked] = useState(false)
     const navigate = useNavigate()
+    const [dateValues, setDateValues] = useState([])
 
     console.log(cameraSettings)
 
@@ -107,8 +110,30 @@ const Settings = ({
         }
     }
 
+    const handleSleepClick = async () => {
+        setOpenSleepDialog(false)
+        console.log('calling sleep')
+        try {
+            const response = await fetch(`${parameterService.BASE_URL}/sleep`)
+            const data = await response.json()
+            console.log(data)
+            if (!response.ok) {
+                setErrorMessage(`Error ${response.status}: ${parameterService.getErrorMessage(response, data)}`)
+                throw new Error(`${response.status} ${parameterService.getErrorMessage(response, data)}`)
+            }
+            setOpenSuccess(true)
+        } catch (error) {
+            console.log(error)
+            setOpenError(true)
+        }
+    }
+
     const handleClickOpen = () => {
         setOpenApplyDialog(true)
+    }
+
+    const handleSleepClickOpen = () => {
+        setOpenSleepDialog(true)
     }
 
     const label = { inputProps: { 'aria-label': 'Color switch demo' } }
@@ -117,6 +142,9 @@ const Settings = ({
 
         <div className={'outerSettingsContainer'}>
             <div className={'controlContainer'}>
+                <AlertDialogSleep className={"alertDialog"} data={serverData}
+                             open={openSleepDialog} setOpen={setOpenSleepDialog} handleClickOpen={handleSleepClick}
+                             applyAsyncChanges={applyAsyncChanges}></AlertDialogSleep>
             <AlertDialog className={"alertDialog"} data={serverData} saturation={saturation}
                          brightness={brightness} contrast={contrast} schedule={timeValues} cameraSettings={cameraSettings}
                          open={openApplyDialog} setOpen={setOpenApplyDialog} handleClickOpen={handleClickOpen}
@@ -137,10 +165,13 @@ const Settings = ({
                 setCameraSettings={setCameraSettings}
                 cameraSettings={cameraSettings}
                 timeValues={timeValues}
-                                 setTimeValues={setTimeValues}
+                setTimeValues={setTimeValues}
+                dateValues={dateValues}
+                setDateValues={setDateValues}
             />
 
             <TimeList setCameraSettings={setCameraSettings} setTimeValues={setTimeValues} timeValues={timeValues}></TimeList>
+                <TimeList setCameraSettings={setCameraSettings} setTimeValues={setDateValues} timeValues={dateValues}></TimeList>
 
 
             <div className={'buttonColumn'}>
@@ -163,6 +194,16 @@ const Settings = ({
                              alt={'s'}
                         />
                         Gallery
+                    </div>
+                </button>
+
+                <button onClick={handleSleepClickOpen} className={'captureButton'} type="button">
+                    <div className={'cameraButtonRow'}>
+                        <img className={'cameraIcon'}
+                             src={GalleryIcon}
+                             alt={'s'}
+                        />
+                        Sleep
                     </div>
                 </button>
 

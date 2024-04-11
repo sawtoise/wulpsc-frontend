@@ -1,4 +1,4 @@
-import { TimePicker } from '@mui/x-date-pickers'
+import { DateTimePicker, TimePicker } from '@mui/x-date-pickers'
 import dayjs from 'dayjs'
 import { useEffect, useState } from 'react'
 import './TimePickerContainer.css'
@@ -6,11 +6,12 @@ import Plus from '../../assets/Plus.svg'
 import { Alert, Snackbar, TextField } from '@mui/material'
 import utc from 'dayjs/plugin/utc'
 
-export default function TimePickerContainer ({timeValues, setTimeValues}) {
+export default function TimePickerContainer ({timeValues, setTimeValues, dateValues, setDateValues}) {
     dayjs.extend(utc)
 
 
     const [timeValue, setTimeValue] = useState(dayjs('2022-04-17T15:30'))
+    const [dateValue, setDateValue] = useState(dayjs('2024-04-17T15:30'))
     const [currentDate, setCurrentDate] = useState(dayjs.utc())
     const trimmedTime = currentDate.hour() + ':' + currentDate.minute().toString().padStart(2, "0")
     const [openError, setOpenError] = useState(false)
@@ -49,6 +50,21 @@ export default function TimePickerContainer ({timeValues, setTimeValues}) {
     console.log(timeValues)
 }
 
+    const pushDate = () => {
+        const trimmedDate = dateValue.toISOString()
+
+        console.log("date value to be added ", dateValue)
+
+        setDateValues(
+            [
+                ...dateValues,
+                trimmedDate
+            ]
+        );
+
+        console.log(dateValues)
+    }
+
 
 return (
     <>
@@ -71,6 +87,20 @@ return (
                 <img className={"plusIcon"} src={Plus} alt={""}></img>
             </button>
         </div>
+            <div className={"timePickerContainer"}>
+            <DateTimePicker
+                defaultValue={dayjs('2024-04-17T15:30')}
+                value={dateValue}
+                onChange={(newValue) => setDateValue(newValue)}
+            />
+
+            <button className={"pushButton"} type="button"
+                    onClick={pushDate}
+            >
+                <img className={"plusIcon"} src={Plus} alt={""}></img>
+            </button>
+            </div>
+
         </div>
     </>
     )
