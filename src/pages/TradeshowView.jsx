@@ -55,7 +55,7 @@ export default function TradeshowView() {
 
         return () => clearInterval(intervalId);
 
-  
+
 }, []);
 
     const handleClose = (event, reason) => {

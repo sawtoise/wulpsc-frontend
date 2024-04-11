@@ -269,6 +269,17 @@ const Settings = ({
                                  })
                              }}
                 />
+                <InputSlider label={'Sleep Time'}
+                             minimum={1}
+                             maximum={2628000}
+                             value={cameraSettings.sleep}
+                             setValue={(value) => {
+                                 setCameraSettings({
+                                     ...cameraSettings,
+                                     sleep: value,
+                                 })
+                             }}
+                />
             </div>
             <div className={'parameterContainer'}>
                 <ParameterSwitch
@@ -348,6 +359,16 @@ const Settings = ({
                         setCameraSettings({
                             ...cameraSettings,
                             wpc: value,
+                        })
+                    }}
+                />
+                <ParameterSwitch
+                    label={'SD Save'}
+                    checked={cameraSettings.sd_save}
+                    setChecked={(value) => {
+                        setCameraSettings({
+                            ...cameraSettings,
+                            sd_save: value,
                         })
                     }}
                 />
