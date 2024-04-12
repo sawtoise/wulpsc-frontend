@@ -55,7 +55,7 @@ export default function LatestPhotoSlideshow( {id, data, coords, setCoords, hand
         if (hoursDiff > 0) return hoursDiff + " hours"
         if (minutesDiff > 0) return minutesDiff + " mins"
         if (secondsDiff > 0) return secondsDiff + " seconds"
-        return 0
+        return "Awake"
     }
 
     let countdown = wakeupCountdown()

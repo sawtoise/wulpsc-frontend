@@ -412,6 +412,16 @@ const Settings = ({
                         })
                     }}
                 />
+                <ParameterSwitch
+                    label={'Automatic Sleep'}
+                    checked={cameraSettings.sd_save}
+                    setChecked={(value) => {
+                        setCameraSettings({
+                            ...cameraSettings,
+                            sd_save: value,
+                        })
+                    }}
+                />
             </div>
 
 
