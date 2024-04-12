@@ -35,7 +35,6 @@ const Settings = ({
     const navigate = useNavigate()
     const [dateValues, setDateValues] = useState([])
 
-    console.log(cameraSettings)
 
 
     useEffect(() => {

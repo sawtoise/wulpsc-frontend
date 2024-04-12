@@ -11,12 +11,12 @@ import parameterService from '../../services/parameters'
 export default function AlertDialog({open, setOpen, handleSleepClick, data}) {
 
     const [dataNew, setData] = useState({});
+    const [wakeUpTime, setWakeUpTime] = useState({})
 
 
     useEffect(() => {
         setData(data)
-        console.log(dataNew)
-    }, [])
+    }, [data])
 
     let t = new Date()
     t.setSeconds(t.getSeconds() + data.sleep)

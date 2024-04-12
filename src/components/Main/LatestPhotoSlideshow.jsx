@@ -6,13 +6,15 @@ import RightArrow from '../../assets/ButtonRightArrow.svg'
 import SearchIcon from '../../assets/Search_Magnifying_Glass.svg'
 import paramatersService from '../../services/parameters.js'
 import CameraIcon from '../../assets/Camera.svg'
+import { Tooltip } from '@mui/material'
 
 export default function LatestPhotoSlideshow( {id, data, coords, setCoords, handleAnalyse, handleCaptureClick, isLoading} ) {
 
     const [index, setIndex] = useState(1)
     const [selectedImage, setSelectedImage] = useState(data.image)
+    const [wakeupTimestamp, setWakeupTimestamp] = useState(new Date())
 
-    useEffect(() => {   
+    useEffect(() => {
         if (index === 0 ) {
             setSelectedImage(data.image)
         } else if (index === 1) {
@@ -24,6 +26,8 @@ export default function LatestPhotoSlideshow( {id, data, coords, setCoords, hand
 
     const isBoxShown = coords.x1 != -1 && coords.y1 != -1 && coords.x2 != -1 && coords.y2 != -1
 
+
+
     const handleNextClick = () => {
         const newIndex = (index + 1) % 3;
         setIndex(newIndex)
@@ -34,69 +38,98 @@ export default function LatestPhotoSlideshow( {id, data, coords, setCoords, hand
         setIndex(newIndex)
     }
 
+     let wakeUpTimeStamp = new Date()
+     wakeUpTimeStamp.setSeconds(wakeUpTimeStamp.getSeconds() + 59)
+
+
+    const wakeupCountdown = () => {
+        let currentDate = new Date()
+        let diffTime = wakeUpTimeStamp - currentDate
+
+        let daysDiff = Math.round(diffTime / (1000 * 3600 * 24))
+        let hoursDiff = Math.round(diffTime / (1000 * 3600))
+        const minutesDiff = Math.floor((diffTime/1000)/60);
+        let secondsDiff = Math.round(diffTime / (1000))
+
+        if (daysDiff > 0) return daysDiff + " days"
+        if (hoursDiff > 0) return hoursDiff + " hours"
+        if (minutesDiff > 0) return minutesDiff + " mins"
+        if (secondsDiff > 0) return secondsDiff + " seconds"
+        return 0
+    }
+
+    let countdown = wakeupCountdown()
+
     return (
         <>
-        <div className={"photoContainer"}>
-            <ClickablePhoto photo={selectedImage} coords={coords} setCoords={setCoords} />
+            <div className={'photoContainer'}>
+                <ClickablePhoto photo={selectedImage} coords={coords} setCoords={setCoords}/>
 
-            <div className={"dateHeader"}>
+                <div className={'dateHeader'}>
 
-            <div className={"dateText"}>
-                {data.timestamp ? data.timestamp.substring(0, 16) : 22}
-            </div>
-
-
-            </div>
-
-            <div className={"buttonRow"}>
-
-
-                <button className={"captureButton"} onClick={handlePreviousClick}>
-                    <div className={"nextButtonRow"}>
-                    <img className={"buttonIcon"} src={LeftArrow} alt={"s"} />
-                        Previous
-                </div>
-                </button>
-
-                <button className={"captureButton"} onClick={handleNextClick}>
-                    <div className={"nextButtonRow"}>
-                        Next
-                        <img className={"buttonIcon"} src={RightArrow} alt={"s"} />
+                    <div className={'dateText'}>
+                        {data.timestamp ? data.timestamp.substring(0, 16) : 22}
                     </div>
-                </button>
 
-            </div>
-
-            <div className={"analyseButtonRow"}>
-
-            <button
-                className={!isBoxShown ? "captureButtonDisabled" : "captureButton"}
-                type="button"
-                disabled={!isBoxShown}
-                onClick={handleAnalyse}
-            >
-                <div className={"cameraButtonRow"}>
-                    <img className={"cameraIcon"} src={SearchIcon} alt={"s"} />
-                    Analyse
-                </div>
-            </button>
-
-                <button
-                    className={isLoading ? "captureButtonDisabled" : "captureButton"}
-                    type="button"
-                    onClick={() =>
-                        handleCaptureClick()
-                    }
-                    disabled={isLoading}
-                >
-                    <div className={"cameraButtonRow"}>
-                        <img className={"cameraIcon"} src={CameraIcon} alt={"s"} />
-                        Capture
+                    <Tooltip placement={'top'} title={<p style={{fontSize: "1.6vh" }}>{wakeUpTimeStamp.toString()}</p>}>
+                    <div className={'dateText'}>
+                        Waking up in {countdown}
                     </div>
-                </button>
+                    </Tooltip>
 
+
+                </div>
+
+                <div className={'buttonRow'}>
+
+
+                    <button className={'captureButton'} onClick={handlePreviousClick}>
+                        <div className={'nextButtonRow'}>
+                            <img className={'buttonIcon'} src={LeftArrow} alt={'s'}/>
+                            Previous
+                        </div>
+                    </button>
+
+                    <button className={'captureButton'} onClick={handleNextClick}>
+                        <div className={'nextButtonRow'}>
+                            Next
+                            <img className={'buttonIcon'} src={RightArrow} alt={'s'}/>
+                        </div>
+                    </button>
+
+                </div>
+
+                <div className={'analyseButtonRow'}>
+
+                    <button
+                        className={!isBoxShown ? 'captureButtonDisabled' : 'captureButton'}
+                        type="button"
+                        disabled={!isBoxShown}
+                        onClick={handleAnalyse}
+                    >
+                        <div className={'cameraButtonRow'}>
+                            <img className={'cameraIcon'} src={SearchIcon} alt={'s'}/>
+                            Analyse
+                        </div>
+                    </button>
+
+                    <button
+                        className={isLoading ? 'captureButtonDisabled' : 'captureButton'}
+                        type="button"
+                        onClick={() =>
+                            handleCaptureClick()
+                        }
+                        disabled={isLoading}
+                    >
+                        <div className={'cameraButtonRow'}>
+                            <img className={'cameraIcon'} src={CameraIcon} alt={'s'}/>
+                            Capture
+                        </div>
+                    </button>
+
+                </div>
             </div>
-        </div>
         </>
     )
+
 }
