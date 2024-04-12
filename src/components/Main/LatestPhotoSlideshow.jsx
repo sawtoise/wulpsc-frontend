@@ -8,7 +8,7 @@ import paramatersService from '../../services/parameters.js'
 import CameraIcon from '../../assets/Camera.svg'
 import { Tooltip } from '@mui/material'
 
-export default function LatestPhotoSlideshow( {id, data, coords, setCoords, handleAnalyse, handleCaptureClick, isLoading} ) {
+export default function LatestPhotoSlideshow( {id, data, coords, setCoords, handleAnalyse, handleCaptureClick, isLoading, nextWakeup} ) {
 
     const [index, setIndex] = useState(1)
     const [selectedImage, setSelectedImage] = useState(data.image)
@@ -38,9 +38,7 @@ export default function LatestPhotoSlideshow( {id, data, coords, setCoords, hand
         setIndex(newIndex)
     }
 
-     let wakeUpTimeStamp = new Date()
-     wakeUpTimeStamp.setSeconds(wakeUpTimeStamp.getSeconds() + 59)
-
+     let wakeUpTimeStamp = new Date(nextWakeup + "Z")
 
     const wakeupCountdown = () => {
         let currentDate = new Date()
@@ -71,7 +69,7 @@ export default function LatestPhotoSlideshow( {id, data, coords, setCoords, hand
                         {data.timestamp ? data.timestamp.substring(0, 16) : 22}
                     </div>
 
-                    <Tooltip placement={'top'} title={<p style={{fontSize: "1.6vh" }}>{wakeUpTimeStamp.toString()}</p>}>
+                    <Tooltip  title={<p style={{fontSize: "2.0vh" }}>{wakeUpTimeStamp.toString()}</p>}>
                     <div className={'dateText'}>
                         Waking up in {countdown}
                     </div>

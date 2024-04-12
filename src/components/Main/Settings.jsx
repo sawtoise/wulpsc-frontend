@@ -23,6 +23,7 @@ const Settings = ({
                       setBrightness,
                       timeValues,
                       setTimeValues,
+                      setBackendSettings
                   }) => {
 
     const [openSuccess, setOpenSuccess] = useState(false)
@@ -113,13 +114,18 @@ const Settings = ({
         setOpenSleepDialog(false)
         console.log('calling sleep')
         try {
-            const response = await fetch(`${parameterService.BASE_URL}/sleep`)
+            const response = await fetch(`${parameterService.BASE_URL}/wuc_sleep`)
             const data = await response.json()
             console.log(data)
             if (!response.ok) {
                 setErrorMessage(`Error ${response.status}: ${parameterService.getErrorMessage(response, data)}`)
                 throw new Error(`${response.status} ${parameterService.getErrorMessage(response, data)}`)
             }
+    
+            setBackendSettings((prevState) => ({
+                ...prevState,
+                next_wakeup: data
+              }))
             setOpenSuccess(true)
         } catch (error) {
             console.log(error)
@@ -142,8 +148,8 @@ const Settings = ({
         <div className={'outerSettingsContainer'}>
             <div className={'controlContainer'}>
                 <AlertDialogSleep className={"alertDialog"} data={serverData}
-                             open={openSleepDialog} setOpen={setOpenSleepDialog} handleClickOpen={handleSleepClick}
-                             applyAsyncChanges={applyAsyncChanges}></AlertDialogSleep>
+                             open={openSleepDialog} setOpen={setOpenSleepDialog}
+                             handleSleepClick={handleSleepClick}></AlertDialogSleep>
             <AlertDialog className={"alertDialog"} data={serverData} saturation={saturation}
                          brightness={brightness} contrast={contrast} schedule={timeValues} cameraSettings={cameraSettings}
                          open={openApplyDialog} setOpen={setOpenApplyDialog} handleClickOpen={handleClickOpen}
@@ -320,6 +326,7 @@ const Settings = ({
                                  })
                              }}
                 />
+                
             </div>
             <div className={'parameterContainer'}>
                 <ParameterSwitch
@@ -414,11 +421,21 @@ const Settings = ({
                 />
                 <ParameterSwitch
                     label={'Automatic Sleep'}
-                    checked={cameraSettings.sd_save}
+                    checked={cameraSettings.auto_sleep}
                     setChecked={(value) => {
                         setCameraSettings({
                             ...cameraSettings,
-                            sd_save: value,
+                            auto_sleep: value,
+                        })
+                    }}
+                />
+                <ParameterSwitch
+                    label={'Low Light Mode'}
+                    checked={cameraSettings.low_light}
+                    setChecked={(value) => {
+                        setCameraSettings({
+                            ...cameraSettings,
+                            low_light: value,
                         })
                     }}
                 />

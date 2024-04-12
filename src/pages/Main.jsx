@@ -10,6 +10,7 @@ function Main() {
   const [brightness, setBrightness] = React.useState(0);
   const [contrast, setContrast] = React.useState(0);
   const [cameraSettings, setCameraSettings] = React.useState({});
+  const [backendSettings, setBackendSettings] = React.useState({});
   const [timeValues, setTimeValues] = React.useState([]);
   const [openError, setOpenError] = useState(false);
   const [latestPhoto, setLatestPhoto] = useState({});
@@ -43,6 +44,30 @@ function Main() {
       }
     };
 
+    const fetchBackendData = async () => {
+      try {
+        const response = await fetch(`${parameterService.BASE_URL}/backend_values`);
+        const data = await response.json();
+        console.log(data);
+        if (!response.ok) {
+          setErrorMessage(
+            `Error ${response.status}: Could not fetch the latest settings from the backend.`
+          );
+          throw new Error(
+            `${response.status} ${parameterService.getErrorMessage(
+              response,
+              data
+            )}`
+          );
+        }
+        setBackendSettings(data);
+      } catch (error) {
+        console.log(error);
+        setOpenError(true);
+      }
+    };
+
+
     const fetchLatestPhoto = async () => {
       try {
         const response = await fetch(
@@ -70,6 +95,7 @@ function Main() {
 
     fetchLatestPhoto().catch(console.error);
     fetchData().catch(console.error);
+    fetchBackendData().catch(console.error);
   }, []);
 
   const handleClose = (event, reason) => {
@@ -100,6 +126,7 @@ function Main() {
         <LatestPhoto
           latestPhoto={latestPhoto}
           setLatestPhoto={setLatestPhoto}
+          backendSettings={backendSettings}
         ></LatestPhoto>
       </div>
       <div className="right-container">
@@ -114,6 +141,7 @@ function Main() {
           setContrast={setContrast}
           timeValues={timeValues}
           setTimeValues={setTimeValues}
+          setBackendSettings={setBackendSettings}
         />
       </div>
     </div>

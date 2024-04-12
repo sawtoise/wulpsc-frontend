@@ -16,7 +16,7 @@ import './LatestPhotoSlideshow.css'
 
 
 
-const LatestPhoto = ({ latestPhoto, setLatestPhoto }) => {
+const LatestPhoto = ({ latestPhoto, setLatestPhoto, backendSettings }) => {
   const [isLoading, setLoading] = useState(false);
   const [openSuccess, setOpenSuccess] = useState(false);
   const [openError, setOpenError] = useState(false);
@@ -115,7 +115,7 @@ const LatestPhoto = ({ latestPhoto, setLatestPhoto }) => {
              onClick={() => setOpenTutorialDialog(true)} />
       </div>
         <LatestPhotoSlideshow data={latestPhoto} coords={coords} setCoords={setCoords} handleAnalyse={handleAnalyseClick}
-                              handleCaptureClick={handleCaptureClick} isLoading={isLoading}
+                              handleCaptureClick={handleCaptureClick} isLoading={isLoading} nextWakeup={backendSettings.next_wakeup}
         ></LatestPhotoSlideshow>
 
 
