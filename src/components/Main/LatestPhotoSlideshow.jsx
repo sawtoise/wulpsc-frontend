@@ -12,9 +12,43 @@ export default function LatestPhotoSlideshow( {id, data, coords, setCoords, hand
 
     const [index, setIndex] = useState(1)
     const [selectedImage, setSelectedImage] = useState(data.image)
-    const [wakeupTimestamp, setWakeupTimestamp] = useState(new Date())
+    const [countdownString, setCountDownString] = useState()
+
+    // let t = new Date("2024-04-12T20:06:50")
+
 
     useEffect(() => {
+        const wakeupCountdown = () => {
+            let currentDate = new Date()
+            let diffTime = nextWakeup - currentDate
+
+            let daysDiff = Math.round(diffTime / (1000 * 3600 * 24))
+            let hoursDiff = Math.round(diffTime / (1000 * 3600))
+            const minutesDiff = Math.floor((diffTime/1000)/60);
+            let secondsDiff = Math.round(diffTime / (1000))
+
+            if (daysDiff > 0) {
+                setCountDownString(daysDiff + " days")
+                return daysDiff + " days"
+            }
+            if (hoursDiff > 0) {
+                setCountDownString(hoursDiff + " hours")
+                return hoursDiff + " hours"
+            }
+            if (minutesDiff > 0) {
+                setCountDownString(minutesDiff + " mins")
+                return minutesDiff + " mins"
+            }
+            if (secondsDiff > 0) {
+                setCountDownString(secondsDiff + " seconds")
+                return secondsDiff + " seconds"
+            }
+
+            setCountDownString("Awake")
+            return "Awake"
+        }
+
+
         if (index === 0 ) {
             setSelectedImage(data.image)
         } else if (index === 1) {
@@ -22,6 +56,13 @@ export default function LatestPhotoSlideshow( {id, data, coords, setCoords, hand
         } else if (index === 2) {
             setSelectedImage(data.right)
         }
+
+        wakeupCountdown()
+        const intervalId = setInterval(() => {
+            wakeupCountdown()
+        }, 1000);
+        return () => clearInterval(intervalId);
+
     }, [data.image, data.left, data.right, index]);
 
     const isBoxShown = coords.x1 != -1 && coords.y1 != -1 && coords.x2 != -1 && coords.y2 != -1
@@ -40,24 +81,6 @@ export default function LatestPhotoSlideshow( {id, data, coords, setCoords, hand
 
      let wakeUpTimeStamp = new Date(nextWakeup + "Z")
 
-    const wakeupCountdown = () => {
-        let currentDate = new Date()
-        let diffTime = wakeUpTimeStamp - currentDate
-
-        let daysDiff = Math.round(diffTime / (1000 * 3600 * 24))
-        let hoursDiff = Math.round(diffTime / (1000 * 3600))
-        const minutesDiff = Math.floor((diffTime/1000)/60);
-        let secondsDiff = Math.round(diffTime / (1000))
-
-        if (daysDiff > 0) return daysDiff + " days"
-        if (hoursDiff > 0) return hoursDiff + " hours"
-        if (minutesDiff > 0) return minutesDiff + " mins"
-        if (secondsDiff > 0) return secondsDiff + " seconds"
-        return "Awake"
-    }
-
-    let countdown = wakeupCountdown()
-
     return (
         <>
             <div className={'photoContainer'}>
@@ -71,7 +94,8 @@ export default function LatestPhotoSlideshow( {id, data, coords, setCoords, hand
 
                     <Tooltip  title={<p style={{fontSize: "2.0vh" }}>{wakeUpTimeStamp.toString()}</p>}>
                     <div className={'dateText'}>
-                        Waking up in {countdown}
+
+                        {countdownString === "Awake" ? "Awake" : countdownString}
                     </div>
                     </Tooltip>
 

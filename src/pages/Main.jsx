@@ -71,7 +71,7 @@ function Main() {
     const fetchLatestPhoto = async () => {
       try {
         const response = await fetch(
-          `${parameterService.BASE_URL}/get_latest_photo`
+            `${parameterService.BASE_URL}/get_latest_photo`
         );
         const data = await response.json();
         console.log(data);

@@ -15,11 +15,20 @@ export default function AlertDialog({open, setOpen, handleSleepClick, data}) {
 
 
     useEffect(() => {
+        let t = new Date()
+        t.setSeconds(t.getSeconds() + data.sleep)
         setData(data)
+        setWakeUpTime(t)
+        console.log(dataNew)
+        const intervalId = setInterval(() => {
+            console.log("")
+            setData(data)
+            let t = new Date()
+            t.setSeconds(t.getSeconds() + data.sleep)
+            setWakeUpTime(t)
+        }, 1000);
+        return () => clearInterval(intervalId);
     }, [data])
-
-    let t = new Date()
-    t.setSeconds(t.getSeconds() + data.sleep)
 
     const handleClose = () => {
         setOpen(false);
@@ -42,7 +51,7 @@ export default function AlertDialog({open, setOpen, handleSleepClick, data}) {
                         <br></br>
                         It will be active again on:
                         <p></p>
-                        {t ? t.toString() : ""}
+                        {wakeUpTime.toString()}
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>

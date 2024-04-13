@@ -113,7 +113,6 @@ export default function DetailedPhoto() {
             </div>
             <div className={'contentContainer'}>
                 <PhotoSlideshow id={id} data={data} coords={coords} setCoords={setCoords} handleAnalyse={handleAnalyseClick}></PhotoSlideshow>
-                <PhotoInformation id={id} data={data}></PhotoInformation>
             </div>
 
         </div>

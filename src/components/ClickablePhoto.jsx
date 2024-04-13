@@ -27,12 +27,15 @@ const handleClick = async (
 };
 
 export default function ClickablePhoto( { photo, coords, setCoords} ) {
+
+
     const width = Math.abs(coords.x2 - coords.x1)
     const height = Math.abs(coords.y2 - coords.y1)
     let topX = -1
     let topY = -1
     const showBox = coords.x1 != -1 && coords.y1 != -1 && coords.x2 != -1 && coords.y2 != -1
     const showFirstPoint = !showBox && coords.x1 != -1 && coords.y1 != -1
+
 
     // const options = {
     //     method: 'POST',
@@ -47,12 +50,42 @@ export default function ClickablePhoto( { photo, coords, setCoords} ) {
     if (showBox) {
          topX = Math.min(coords.x1, coords.x2)
          topY = Math.min(coords.y1, coords.y2)
+
+
+
         console.log(`Topx: ${topX} topY: ${topY} x1: ${coords.x1} x2: ${coords.x2} y1: ${coords.y1} y2: ${coords.y2}`)
         //parameterService.getObjectDimensions(id, coords)
         //handleClick(id, options)
     }
 
+    const printCords = () => {
+
+        let data = ([{}])
+        console.log("BABY DATA")
+        console.log(data)
+
+
+        let widthIncrement = width / 5
+        let heightIncrement = height / 5
+
+        for (let ix = 0; ix < 5; ix++) {
+            for (let jy = 0; jy < 5; jy++) {
+                let currentX = topX + ix * widthIncrement
+                let currentY = topY + jy * heightIncrement
+                data.push({currentX: currentX, currentY: currentY})
+            }
+        }
+        data.shift()
+
+        return data
+
+
+    }
+
+    const cordData = printCords()
+
     return (
+        <>
         <div className="img-overlay-wrap" onClick={(e) => addPoint(e, coords, setCoords)}>
             <img
                 className={"clickablePhoto"}
@@ -61,7 +94,15 @@ export default function ClickablePhoto( { photo, coords, setCoords} ) {
              />
              {showBox &&
              <svg viewBox="0 0 617 444" >
-             <rect x={topX} y={topY} width={width} height={height} stroke="black" strokeWidth="3" fill="none"/>
+                 {cordData.map(function(coordinate)  {
+                     {console.log("BEING LOGGED")}
+                     return (
+                             <rect x={coordinate.currentX} y={coordinate.currentY} width={width / 5} height={height / 5}
+                                   stroke="#90EE90" strokeWidth="3" fill="none"/>
+                     )
+                 } )
+                 }
+             <rect x={topX} y={topY} width={width} height={height} stroke="#90EE90" strokeWidth="3" fill="none"/>
                 </svg>
              }
              {showFirstPoint &&
@@ -69,8 +110,8 @@ export default function ClickablePhoto( { photo, coords, setCoords} ) {
                 <circle cx={coords.x1} cy={coords.y1} r="1" fill="black"/>
                 </svg>
              }
-         
         </div>
+            </>
         
     )
 
