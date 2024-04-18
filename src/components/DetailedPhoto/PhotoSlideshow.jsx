@@ -4,9 +4,8 @@ import './PhotoSlideshow.css'
 import LeftArrow from '../../assets/ButtonLeftArrow.svg'
 import RightArrow from '../../assets/ButtonRightArrow.svg'
 import SearchIcon from '../../assets/Search_Magnifying_Glass.svg'
-import paramatersService from '../../services/parameters.js'
 
-export default function PhotoSlideshow( {id, data, coords, setCoords, handleAnalyse} ) {
+export default function PhotoSlideshow( {data, coords, setCoords, handleAnalyse} ) {
 
     const [index, setIndex] = useState(1)
     const [selectedImage, setSelectedImage] = useState(data.image)

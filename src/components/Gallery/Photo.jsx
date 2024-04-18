@@ -1,4 +1,3 @@
-import PlaceholderPhoto from '../../assets/IMG_VGA_Q2.png';
 import './Photo.css'
 import { useNavigate } from 'react-router-dom'
 export default function Photo( {data} ) {

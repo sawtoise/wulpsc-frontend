@@ -20,7 +20,6 @@ const handleClick = async (
                 `${response.status} ${parameterService.getErrorMessage(response, data)}`
             );
         }
-        console.log("RETURNED DISSTANCE STUFF IS", data)
     } catch (err) {
         console.log(err.message);
     }
@@ -61,8 +60,6 @@ export default function ClickablePhoto( { photo, coords, setCoords} ) {
     const printCords = () => {
 
         let data = ([{}])
-        console.log("BABY DATA")
-        console.log(data)
 
 
         let widthIncrement = width / 5
@@ -95,7 +92,6 @@ export default function ClickablePhoto( { photo, coords, setCoords} ) {
              {showBox &&
              <svg viewBox="0 0 617 444" >
                  {cordData.map(function(coordinate)  {
-                     {console.log("BEING LOGGED")}
                      return (
                              <rect x={coordinate.currentX} y={coordinate.currentY} width={width / 5} height={height / 5}
                                    stroke="#90EE90" strokeWidth="3" fill="none"/>

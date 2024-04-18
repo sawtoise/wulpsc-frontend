@@ -43,7 +43,6 @@ const Settings = ({
             try {
                 const response = await fetch(`${parameterService.BASE_URL}/parameters`)
                 const data = await response.json()
-                console.log(data)
                 if (!response.ok) {
                     throw new Error(`${response.status} ${parameterService.getErrorMessage(response, data)}`)
                 }
@@ -94,11 +93,9 @@ const Settings = ({
 
     const applyAsyncChanges = async () => {
         setOpenApplyDialog(false)
-        console.log('applying async changes')
         try {
             const response = await fetch(`${parameterService.BASE_URL}/set_parameters`, options)
             const data = await response.json()
-            console.log(data)
             if (!response.ok) {
                 setErrorMessage(`Error ${response.status}: ${parameterService.getErrorMessage(response, data)}`)
                 throw new Error(`${response.status} ${parameterService.getErrorMessage(response, data)}`)

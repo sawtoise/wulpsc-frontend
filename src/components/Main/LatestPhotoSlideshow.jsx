@@ -4,7 +4,6 @@ import './LatestPhotoSlideshow.css'
 import LeftArrow from '../../assets/ButtonLeftArrow.svg'
 import RightArrow from '../../assets/ButtonRightArrow.svg'
 import SearchIcon from '../../assets/Search_Magnifying_Glass.svg'
-import paramatersService from '../../services/parameters.js'
 import CameraIcon from '../../assets/Camera.svg'
 import { Tooltip } from '@mui/material'
 
@@ -13,8 +12,6 @@ export default function LatestPhotoSlideshow( {id, data, coords, setCoords, hand
     const [index, setIndex] = useState(1)
     const [selectedImage, setSelectedImage] = useState(data.image)
     const [countdownString, setCountDownString] = useState()
-
-    // let t = new Date("2024-04-12T20:06:50")
 
 
     useEffect(() => {

@@ -1,13 +1,9 @@
 import React, { useState } from "react";
-import PlaceholderPhoto from "../../assets/IMG_VGA_Q2.png";
 import InfoIcon from "../../assets/Info.svg";
-import CameraIcon from "../../assets/Camera.svg";
-import SearchIcon from "../../assets/Search_Magnifying_Glass.svg";
 import "./LatestPhoto.css";
 import paramatersService from "../../services/parameters";
 import { Alert, Snackbar } from "@mui/material";
 import parameterService from "../../services/parameters.js";
-import ClickablePhoto from "../ClickablePhoto.jsx";
 import AlertDialogDimensions from './AlertDialogDimensions.jsx'
 import AlertDialogTutorial from './AlertDialogTutorial.jsx'
 import LatestPhotoSlideshow from './LatestPhotoSlideshow.jsx'

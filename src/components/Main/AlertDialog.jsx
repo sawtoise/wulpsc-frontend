@@ -16,26 +16,7 @@ export default function AlertDialog({open, setOpen, applyAsyncChanges, contrast,
 
 
     useEffect(() => {
-
         setData(data)
-        console.log(dataNew)
-        /*const getParameters = async () => {
-            try {
-                const response = await fetch('${parameterService.BASE_URL}/parameters')
-                const data = await response.json()
-                console.log(data)
-                if (!response.ok) {
-                    throw new Error(`${response.status} ${parameterService.getErrorMessage(response, data)}`);
-                }
-                setData(data)
-                setSeparatedSchedule(data.schedule.join(' '))
-            } catch (error) {
-                console.log(error)
-            }
-        }
-
-        getParameters()
-           .catch(console.error)*/
     }, [])
 
     const handleClose = () => {

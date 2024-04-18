@@ -53,7 +53,6 @@ export default function TimePickerContainer ({timeValues, setTimeValues, dateVal
     const pushDate = () => {
         const trimmedDate = dateValue.toISOString()
 
-        console.log("date value to be added ", dateValue)
 
         setDateValues(
             [

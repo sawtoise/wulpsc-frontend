@@ -14,7 +14,6 @@ export default function PhotoList( {currentPage} ) {
                                 const offset = limit * (currentPage - 1)
                                 const response = await fetch(`${parameterService.BASE_URL}/photos?offset=${offset}&limit=${limit}`)
                                 const data = await response.json()
-                                console.log(data)
                                 if (!response.ok) {
                                         throw new Error(`${response.status} ${parameterService.getErrorMessage(response, data)}`);
                                 }

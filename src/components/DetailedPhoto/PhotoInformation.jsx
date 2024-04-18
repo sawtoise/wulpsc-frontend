@@ -1,5 +1,4 @@
 import './PhotoInformation.css'
-import { useEffect } from 'react'
 export default function PhotoInformation({data}) {
 
 

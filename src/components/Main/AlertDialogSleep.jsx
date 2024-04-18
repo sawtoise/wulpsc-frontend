@@ -6,7 +6,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useEffect, useState } from 'react'
-import parameterService from '../../services/parameters'
 
 export default function AlertDialog({open, setOpen, handleSleepClick, data}) {
 
@@ -19,9 +18,7 @@ export default function AlertDialog({open, setOpen, handleSleepClick, data}) {
         t.setSeconds(t.getSeconds() + data.sleep)
         setData(data)
         setWakeUpTime(t)
-        console.log(dataNew)
         const intervalId = setInterval(() => {
-            console.log("")
             setData(data)
             let t = new Date()
             t.setSeconds(t.getSeconds() + data.sleep)
